@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserLoginRegisterComponent } from './user-login-register/user-login-register.component';
+import { UserLoginRegisterComponent } from './public/pages/user-login-register/user-login-register.component';
 
 const routes: Routes = [
   {path:'', redirectTo:"/login-register", pathMatch:'full'},

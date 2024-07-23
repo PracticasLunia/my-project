@@ -1,0 +1,21 @@
+<div class="flex flex-col items-center px-5 border-s">
+  <h1 class="mb-3">Register</h1>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col">
+      <label>User Name:</label>
+      <input type="text" formControlName="name">
+      <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="text-red-500">User name required</div>
+    </div>
+    <div class="flex flex-col">
+      <label>User Email:</label>
+      <input type="email" formControlName="email">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-500">Email required</div>
+    </div>
+    <div class="flex flex-col">
+      <label>User Password:</label>
+      <input type="password" formControlName="password">
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password required</div>
+    </div>
+    <button class="btn bg-green-400 w-full" type="submit">Sing in</button>
+  </form>
+</div>
