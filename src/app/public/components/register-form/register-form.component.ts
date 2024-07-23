@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../../services/register/register.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from '../../../shared/models/user';
 
 @Component({
@@ -16,7 +16,6 @@ export class RegisterFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
     private router: Router,
-    private activatedRouter: ActivatedRoute,
   ){}
 
   ngOnInit(){
@@ -30,7 +29,10 @@ export class RegisterFormComponent implements OnInit {
   onSubmit(){
     if(this.userForm.valid){
       let user: User = this.userForm.value;
-      this.registerService.register(user).subscribe();
+      this.registerService.register(user).subscribe((user) => {
+        console.log(user);
+        this.router.navigate(['/']);
+      });
     }
   }
 }

@@ -13,6 +13,6 @@ export class RegisterService {
   constructor(private http: HttpClient){}
 
   register(user: User): Observable<User>{
-    return this.http.post<User>(this.apiUrl, user);
+    return this.http.post<User>(this.apiUrl, user, {withCredentials: true});
   }
 }

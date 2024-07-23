@@ -1,0 +1,22 @@
+<div class="flex justify-center items-center">
+  <div class="container flex justify-center flex-col items-center">
+    <h1 class="text-center my-8">User list</h1>
+    <div class="w-full flex flex-col">
+      <div *ngFor="let user of this.userList" class="flex flex-row w-full border border-gray-200 rounded-xl bg-gray-50 py-2 px-4 items-center">
+        <div class="me-4">
+          ID: {{this.userList[0].id}}
+        </div>
+        <div class="me-4">
+          Name: {{this.userList[0].name}}
+        </div>
+        <div class="me-4">
+          Email: {{this.userList[0].email}}
+        </div>
+        <div class="flex flex-col me-4">
+          Admin:
+          <input type="checkbox" [checked]="this.userList[0].admin">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

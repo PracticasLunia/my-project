@@ -1,13 +1,15 @@
 <div class="flex flex-col items-center px-5">
   <h1 class="mb-3">Login</h1>
-  <form>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="flex flex-col">
       <label>User Email:</label>
-      <input type="email">
+      <input type="email" formControlName="email">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-500">Email required</div>
     </div>
     <div class="flex flex-col">
       <label>User Password:</label>
-      <input type="password">
+      <input type="password" formControlName="password">
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password required</div>
     </div>
     <button class="btn bg-green-400 w-full" type="submit">Log In</button>
   </form>

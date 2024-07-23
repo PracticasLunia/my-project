@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { UserListModule } from './pages/user-list/user-list.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    UserListModule
   ]
 })
 export class AdminModule { }
