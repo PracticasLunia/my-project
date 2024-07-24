@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginFormModule } from './public/components/login-form/login-form.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {PruebamoduleModule} from "./admin/components/pruebamodule/pruebamodule.module";
+import { NavbarModule } from './shared/components/navbar/navbar.module'
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import {PruebamoduleModule} from "./admin/components/pruebamodule/pruebamodule.m
     UserLoginRegisterModule,
     HttpClientModule,
     FormsModule,
+    NavbarModule,
     CommonModule,
-    PruebamoduleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

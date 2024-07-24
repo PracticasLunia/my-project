@@ -1,13 +1,11 @@
+
 import { TestBed } from '@angular/core/testing';
-import { VerifyService } from './verify.service';
-import { CookieService } from 'ngx-cookie-service';
-// Http testing module and mocking controller
+import { GetService } from './get.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { CookieService } from 'ngx-cookie-service';
 
-// Other imports
-
-describe('VerifyService', () => {
-  let service: VerifyService;
+describe('GetService', () => {
+  let service: GetService;
   let mockHttp: HttpTestingController;
   let mockCookieService: CookieService;
 
@@ -22,10 +20,10 @@ describe('VerifyService', () => {
       ],
       providers: [
         {provide: CookieService, useValue: cookieServiceStub},
-        VerifyService
+        GetService
       ]
     });
-    service = TestBed.inject(VerifyService);
+    service = TestBed.inject(GetService);
     mockHttp = TestBed.inject(HttpTestingController);
     mockCookieService = TestBed.inject(CookieService);
   });
@@ -38,7 +36,7 @@ describe('VerifyService', () => {
     const userId = 123;
     const expectedUrl = `${service['apiUrl']}${userId}`;
 
-    service.verify(userId).subscribe();
+    service.get(userId).subscribe();
 
     const req = mockHttp.expectOne(expectedUrl);
     expect(req.request.method).toBe('GET');
@@ -46,3 +44,4 @@ describe('VerifyService', () => {
     req.flush({});
   });
 });
+

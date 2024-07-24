@@ -26,10 +26,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('my-project');
   });
 
-  it('should render title', () => {
+  it('should render th router', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, my-project');
+    expect(compiled.querySelector('router-outlet')).not.toBeNull()
   });
 });

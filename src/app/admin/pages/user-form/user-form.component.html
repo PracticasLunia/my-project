@@ -1,0 +1,28 @@
+<div class="flex flex-col items-center px-5 ">
+  <h1 class="mb-3 mt-32">Edit User: {{this.userForm.value.name}}</h1>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col">
+      <label>User Name:</label>
+      <input type="text" formControlName="name">
+      <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="text-red-500">User name not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>User Email:</label>
+      <input type="email" formControlName="email">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-500">Email not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>User Password:</label>
+      <label class="text-sm">Leave empty to use the old password</label>
+      <input type="password" formControlName="password">
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password not valid</div>
+    </div>
+    <div class="flex flex-row items-center">
+      <label>Is the user admin?:</label>
+      <input class="ms-3" type="checkbox" formControlName="admin">
+      <div *ngIf="userForm.get('admin')?.invalid && userForm.get('admin')?.touched" class="text-red-500">Password not valid</div>
+    </div>
+      <button class="btn bg-green-400 w-full" type="submit">Update data</button>
+      <button class="btn bg-gray-100 w-full" [routerLink]="['/users']">Go back</button>
+  </form>
+</div>
