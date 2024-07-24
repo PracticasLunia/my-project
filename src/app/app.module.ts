@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginFormModule } from './public/components/login-form/login-form.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {PruebamoduleModule} from "./admin/components/pruebamodule/pruebamodule.module";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CommonModule } from '@angular/common';
     UserLoginRegisterModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    PruebamoduleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
