@@ -26,7 +26,7 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('my-project');
   });
 
-  it('should render th router', () => {
+  it('should render the router', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;

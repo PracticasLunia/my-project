@@ -1,3 +1,4 @@
+import { Message } from './../../../../../node_modules/vite/node_modules/esbuild/lib/main.d';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login/login.service';
@@ -11,6 +12,7 @@ import { User } from '../../../shared/models/user';
 })
 export class LoginFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
+  errorMessage: string = " ";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,9 +31,13 @@ export class LoginFormComponent implements OnInit {
     if(this.userForm.valid){
       let user: User = this.userForm.value;
       this.loginService.login(user.email, user.password).subscribe((user) => {
-        console.log(user);
         this.router.navigate(['/']);
+      },
+      (error) => {
+        this.errorMessage = error.error['error'];
       });
+    } else {
+      this.errorMessage = "Form is invalid"
     }
   }
 }

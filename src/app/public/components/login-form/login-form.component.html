@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center px-5">
+<div class="flex flex-col items-center px-5 sm:my-0 my-8">
   <h1 class="mb-3">Login</h1>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="flex flex-col">
@@ -12,5 +12,6 @@
       <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password required</div>
     </div>
     <button class="btn bg-green-400 w-full" type="submit">Log In</button>
+    <div class="text-red-500 w-full text-center mt-2">{{this.errorMessage || " "}}</div>
   </form>
 </div>

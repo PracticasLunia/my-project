@@ -20,10 +20,10 @@ export class VerifyUserModalComponent {
 
   verifyUser(id: number): void {
     this.verifing = true;
-    this.verifyService.verify(id).subscribe(() => {
-      this.verifing = false;
-      window.location.reload();
-    });
+    //this.verifyService.verify(id).subscribe(() => {
+      //this.verifing = false;
+      //window.location.reload();
+    //});
   }
 
   openModal() {

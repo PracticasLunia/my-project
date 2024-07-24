@@ -11,6 +11,7 @@ import { User } from '../../../shared/models/user';
 })
 export class RegisterFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
+  errorMessage: string = " ";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,7 +33,12 @@ export class RegisterFormComponent implements OnInit {
       this.registerService.register(user).subscribe((user) => {
         console.log(user);
         this.router.navigate(['/']);
+      },
+      (error) => {
+        this.errorMessage = error.error['error'];
       });
+    } else {
+      this.errorMessage = "Form is invalid"
     }
   }
 }
