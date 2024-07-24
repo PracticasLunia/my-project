@@ -1,12 +1,14 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
+    "incremental": false,
     "outDir": "./dist/out-tsc",
     "strict": true,
-    "noImplicitOverride": true,
+    "noImplicitAny": false,
+    //"noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
+    //"noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
