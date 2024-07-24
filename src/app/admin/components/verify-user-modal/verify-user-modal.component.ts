@@ -18,12 +18,16 @@ export class VerifyUserModalComponent {
     private router: Router, private activatedRoute: ActivatedRoute
   ){}
 
-  verifyUser(id: number): void {
+  verifyUser(): void {
     this.verifing = true;
-    //this.verifyService.verify(id).subscribe(() => {
-      //this.verifing = false;
-      //window.location.reload();
-    //});
+    this.verifyService.verify(this.userId).subscribe(() => {
+      this.verifing = false;
+      this.windowReload();
+    });
+  }
+
+  windowReload(){
+    window.location.reload();
   }
 
   openModal() {

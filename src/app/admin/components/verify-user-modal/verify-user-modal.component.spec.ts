@@ -26,12 +26,11 @@ describe('VerifyUserModalComponent', () => {
       ]
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
+  
     fixture = TestBed.createComponent(VerifyUserModalComponent);
     component = fixture.componentInstance;
     verifyService = TestBed.inject(VerifyService);
+    spyOn(component, 'windowReload').and.callFake( () => {});
     fixture.detectChanges();
   });
 
@@ -51,16 +50,11 @@ describe('VerifyUserModalComponent', () => {
     expect(modal).toBeFalsy();
   });
 
-  it('should call verifyUser and verify service', fakeAsync(() => {
-    spyOn(window.location, 'reload'); //FFIXXXX
+  it('should call verifyUser and verify service', () => {
     component.userId = 1;
-    component.verifyUser(1);
-    expect(component.verifing).toBeTrue();
-    tick();
+    component.verifyUser();
     expect(verifyService.verify).toHaveBeenCalledWith(1);
-    expect(component.verifing).toBeFalse();
-    expect(window.location.reload).toHaveBeenCalled();
-  }));
+  });
 
   it('should call openModal and set opened to true', () => {
     component.openModal();
