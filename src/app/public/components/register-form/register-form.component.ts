@@ -31,7 +31,6 @@ export class RegisterFormComponent implements OnInit {
     if(this.userForm.valid){
       let user: User = this.userForm.value;
       this.registerService.register(user).subscribe((user) => {
-        console.log(user);
         this.router.navigate(['/']);
       },
       (error) => {

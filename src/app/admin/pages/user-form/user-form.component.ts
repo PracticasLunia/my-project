@@ -13,7 +13,7 @@ import { UpdateService } from '../../services/update/update.service';
 })
 export class UserFormComponent {
   userForm: FormGroup = new FormGroup({});
-  private userOldPassword: string = "";
+  userOldPassword: string = "";
 
   constructor(
     private formBuilder: FormBuilder,

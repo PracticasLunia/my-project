@@ -19,7 +19,7 @@ export class UpdateService {
     private cookieService: CookieService
   ){ }
 
-  update(id: number, data: User): Observable<void>{
+  update(id: number, data: User | any): Observable<void>{
     return this.http.post<void>(this.apiUrl + id, data, { headers: this.headers});
   }
 }
