@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-HttpRequest,
-HttpHandler,
-HttpEvent,
-HttpInterceptor,
-HttpHeaders,
-HttpErrorResponse
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, filter, switchMap, take } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { RefreshjwtService } from '../public/services/refreshjwt/refreshjwt.service';
@@ -20,15 +13,15 @@ export class JWTInterceptor implements HttpInterceptor {
   constructor(
     private cookieService: CookieService,
     private refreshjwtService: RefreshjwtService
-  ) {}
+  ) { }
 
-  addToken(request: HttpRequest<unknown>){
-    let clone = request.clone( { headers: request.headers.append('Authorization','Bearer ' + this.token) } );
+  addToken(request: HttpRequest<unknown>) {
+    let clone = request.clone({ headers: request.headers.append('Authorization', 'Bearer ' + this.token) });
     return clone;
   }
 
-  addRefreshToken(request: HttpRequest<unknown>){
-    let clone = request.clone( { headers: request.headers.append('Authorization','Bearer ' + this.refreshToken) } );
+  addRefreshToken(request: HttpRequest<unknown>) {
+    let clone = request.clone({ headers: request.headers.append('Authorization', 'Bearer ' + this.refreshToken) });
     return clone;
   }
 
@@ -38,7 +31,7 @@ export class JWTInterceptor implements HttpInterceptor {
     })
 
     let requestWTokens;
-    if(request.url.includes('refresh-token')){
+    if (request.url.includes('refresh-token')) {
       requestWTokens = this.addRefreshToken(request);
     } else {
       requestWTokens = this.addToken(request);
@@ -46,11 +39,11 @@ export class JWTInterceptor implements HttpInterceptor {
 
     return next.handle(requestWTokens).pipe(
       catchError((error) => {
-        if (error instanceof HttpErrorResponse && !request.url.includes('public') && error.status === 401){
+        if (error instanceof HttpErrorResponse && !request.url.includes('public') && error.status === 401) {
           return this.handle401Error(request, next);
         }
 
-        throw Error(error);
+        throw error;
       })
     )
   }
@@ -68,7 +61,7 @@ export class JWTInterceptor implements HttpInterceptor {
         }),
         catchError((error) => {
           this.isRefreshing = false;
-          throw Error(error);
+          throw error;
         })
       );
     } else {
