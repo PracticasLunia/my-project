@@ -10,18 +10,14 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class FindService {
   private apiUrl = environment.apiUrl + '/admin/user';
-  private token = this.cookieService.get('token')
-
-  private headers = new HttpHeaders({'Authorization':'Bearer ' + this.token});
 
   constructor(
     private http: HttpClient,
-    private cookieService: CookieService
   ){
 
   }
 
   find(email: string, password: string): Observable<User[]>{
-    return this.http.post<User[]>(this.apiUrl, {email: email, password: password}, { headers: this.headers});
+    return this.http.post<User[]>(this.apiUrl, {email: email, password: password});
   }
 }

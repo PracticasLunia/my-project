@@ -4,7 +4,7 @@
     <h1 class="text-center my-8">User list</h1>
     <div class="w-full flex flex-col">
       @for (user of this.userList; track user.id) {
-        <div class="flex flex-row sm:w-full justify-center border border-gray-200 rounded-xl bg-gray-50 py-2 px-4 mx-4 items-center">
+        <div class="flex flex-row sm:w-full justify-center border border-gray-200 rounded-xl my-1 bg-gray-50 py-2 px-4 mx-4 items-center">
           <div class="flex sm:flex-row flex-col">
             <div class="me-4">
               ID: {{user.id}}

@@ -10,16 +10,12 @@ import { User } from '../../../shared/models/user';
 })
 export class UpdateService {
   private apiUrl = environment.apiUrl + '/admin/user-update/';
-  private token = this.cookieService.get('token')
-
-  private headers = new HttpHeaders({'Authorization':'Bearer ' + this.token});
 
   constructor(
     private http: HttpClient,
-    private cookieService: CookieService
   ){ }
 
   update(id: number, data: User | any): Observable<void>{
-    return this.http.post<void>(this.apiUrl + id, data, { headers: this.headers});
+    return this.http.post<void>(this.apiUrl + id, data);
   }
 }

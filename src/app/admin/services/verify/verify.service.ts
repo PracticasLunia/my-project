@@ -10,16 +10,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class VerifyService {
   private apiUrl = environment.apiUrl + '/admin/user-verify/';
-  private token = this.cookieService.get('token')
-
-  private headers = new HttpHeaders({'Authorization':'Bearer ' + this.token});
-
   constructor(
     private http: HttpClient,
-    private cookieService: CookieService
   ){ }
 
   verify(id: number): Observable<void>{
-    return this.http.get<void>(this.apiUrl + id, { headers: this.headers});
+    return this.http.get<void>(this.apiUrl + id);
   }
 }
