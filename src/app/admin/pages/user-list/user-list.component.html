@@ -2,9 +2,16 @@
 <div class="flex justify-center items-center">
   <div class="container flex justify-center flex-col items-center">
     <h1 class="text-center my-8">User list</h1>
-    <div class="w-full flex flex-col">
+    <div class="w-full flex md:flex-row flex-col justify-around items-center mb-4 px-4">
+      <div class="w-full flex md:flex-row flex-col items-center justify-center">
+        <input class="mb-2 md:me-2 md:mb-0 py-1" [(ngModel)]="this.searchName" type="text" placeholder="User name...">
+        <input class="mb-2 md:me-2 md:mb-0 py-1" [(ngModel)]="this.searchEmail" type="text" placeholder="User email...">
+        <button (click)="this.searchUsers()" class="px-2 mb-2 md:mb-0 py-1 border rounded-md w-full md:w-28 bg-slate-100">Search</button>
+      </div>
+    </div>
+    <div class="w-full flex flex-col px-4">
       @for (user of this.userList; track user.id) {
-        <div class="flex flex-row sm:w-full justify-center border border-gray-200 rounded-xl my-1 bg-gray-50 py-2 px-4 mx-4 items-center">
+        <div class="flex flex-row sm:w-full justify-center border border-gray-200 rounded-xl my-1 bg-gray-50 py-2 px-4 items-center">
           <div class="flex sm:flex-row flex-col">
             <div class="me-4">
               ID: {{user.id}}
@@ -33,6 +40,11 @@
               </svg>
             </a>
           </div>
+        </div>
+      }
+      @if (this.userList.length <= 0) {
+        <div class="flex flex-row sm:w-full justify-center border border-gray-200 rounded-xl my-1 bg-gray-50 py-2 px-4 items-center">
+          There are no books
         </div>
       }
     </div>

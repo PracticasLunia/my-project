@@ -1,9 +1,28 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin.guard';
 import { VerifiedGuard } from './guards/verified.guard';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'users',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login-register',
+    loadChildren: () => import('./public/pages/user-login-register/user-login-register.module').then(m => m.UserLoginRegisterModule)
+  },
+  {
+    path: 'not-verified',
+    loadChildren: () => import('./public/pages/not-verified/not-verified.module').then(m => m.NotVerifiedModule)
+  },
+  {
+    path: 'not-admin',
+    loadChildren: () => import('./public/pages/not-admin/not-admin.module').then(m => m.NotAdminModule)
+  },
+
+
   {
     path: 'user/edit/:id',
     canActivate: [VerifiedGuard, AdminGuard],
@@ -14,10 +33,28 @@ const routes: Routes = [
     canActivate: [VerifiedGuard, AdminGuard],
     loadChildren: () => import('./admin/pages/user-list/user-list.module').then(m => m.UserListModule)
   },
+
+
   {
-    path: 'login-register',
-    loadChildren: () => import('./public/pages/user-login-register/user-login-register.module').then(m => m.UserLoginRegisterModule)
-  }
+    path: 'books',
+    canActivate: [VerifiedGuard, AdminGuard],
+    loadChildren: () => import('./admin/pages/book-list/book-list.module').then(m => m.BookListModule)
+  },
+  {
+    path: 'book/create',
+    canActivate: [VerifiedGuard, AdminGuard],
+    loadChildren: () => import('./admin/pages/book-form/book-form.module').then(m => m.BookFormModule)
+  },
+  {
+    path: 'book/edit/:isbn',
+    canActivate: [VerifiedGuard, AdminGuard],
+    loadChildren: () => import('./admin/pages/book-form/book-form.module').then(m => m.BookFormModule)
+  },
+  /*{
+    path: "**",
+    redirectTo: "not-admin",
+    pathMatch: "full",
+  },*/
 ];
 
 @NgModule({

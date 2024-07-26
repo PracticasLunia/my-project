@@ -2,20 +2,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import { User } from '../../../shared/models/user';
+import { environment } from '../../../../../environments/environment';
+import { Category } from '../../../../shared/models/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetService {
-  private apiUrl = environment.apiUrl + '/admin/user/';
+  private apiUrl = environment.apiUrl + '/admin/category/';
 
   constructor(
     private http: HttpClient,
   ){ }
 
-  get(id: number): Observable<User>{
-    return this.http.get<User>(this.apiUrl + id);
+  get(isbn: string): Observable<Category>{
+    return this.http.get<Category>(this.apiUrl + isbn);
   }
 }

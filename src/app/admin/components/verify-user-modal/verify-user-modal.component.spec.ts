@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { VerifyUserModalComponent } from './verify-user-modal.component';
-import { VerifyService } from '../../services/verify/verify.service';
+import { VerifyService } from '../../services/user/verify/verify.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
@@ -26,7 +26,7 @@ describe('VerifyUserModalComponent', () => {
       ]
     })
     .compileComponents();
-  
+
     fixture = TestBed.createComponent(VerifyUserModalComponent);
     component = fixture.componentInstance;
     verifyService = TestBed.inject(VerifyService);

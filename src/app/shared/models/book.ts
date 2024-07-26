@@ -1,5 +1,4 @@
 export interface Book {
-  id: number,
   title: string,
   author: string,
   isbn: string,
@@ -12,12 +11,7 @@ export interface Book {
   coverImage: string,
   format: string,
   availability: string,
-  category:
-  {
-    id: number,
-    name: string
-  }
-  ,
+  category: number,
   tags: [
     {
       id: number,

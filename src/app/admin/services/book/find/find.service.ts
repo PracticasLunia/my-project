@@ -1,15 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import { User } from '../../../shared/models/user';
+import { environment } from '../../../../../environments/environment';
+import { Book } from '../../../../shared/models/book';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FindService {
-  private apiUrl = environment.apiUrl + '/admin/user';
+  private apiUrl = environment.apiUrl + '/admin/book';
 
   constructor(
     private http: HttpClient,
@@ -17,7 +17,7 @@ export class FindService {
 
   }
 
-  find(email: string, password: string): Observable<User[]>{
-    return this.http.post<User[]>(this.apiUrl, {email: email, password: password});
+  find(title: string, author: string): Observable<Book[]>{
+    return this.http.post<Book[]>(this.apiUrl, {title: title, author: author});
   }
 }

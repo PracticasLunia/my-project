@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserListComponent } from './user-list.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FindService } from '../../services/find/find.service';
+import { FindService } from '../../services/user/find/find.service';
 import { find, of } from 'rxjs';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';

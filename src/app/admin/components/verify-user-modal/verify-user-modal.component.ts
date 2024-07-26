@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { VerifyService } from '../../services/verify/verify.service';
+import { VerifyService } from '../../services/user/verify/verify.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

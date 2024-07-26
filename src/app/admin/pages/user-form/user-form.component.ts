@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from '../../../public/services/register/register.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../shared/models/user';
-import { GetService } from '../../services/get/get.service';
-import { UpdateService } from '../../services/update/update.service';
+import { GetService } from '../../services/user/get/get.service';
+import { UpdateService } from '../../services/user/update/update.service';
 
 @Component({
   selector: 'app-user-form',

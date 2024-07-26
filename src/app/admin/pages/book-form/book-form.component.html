@@ -1,0 +1,124 @@
+<app-navbar></app-navbar>
+<div class="flex flex-col items-center px-5 my-12">
+  @if (this.bookISBNInitial){
+  <h1 class="mb-3">Edit Book: {{this.bookForm.value.title}}</h1>
+  } @else {
+  <h1 class="mb-3">Create Book</h1>
+  }
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col">
+      <label>Title:</label>
+      <input type="text" formControlName="title">
+      <div *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched" class="text-red-500">Title not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Author:</label>
+      <input type="text" formControlName="author">
+      <div *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched" class="text-red-500">Author not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>ISBN:</label>
+      <input type="text" formControlName="isbn">
+      <div *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched" class="text-red-500">ISBN not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Genre:</label>
+      <input type="text" formControlName="genre">
+      <div *ngIf="bookForm.get('genre')?.invalid && bookForm.get('genre')?.touched" class="text-red-500">Genre not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Publication Date:</label>
+      <input type="date" formControlName="publicationDate">
+      <div *ngIf="bookForm.get('publicationDate')?.invalid && bookForm.get('publicationDate')?.touched" class="text-red-500">Publication Date not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Publisher:</label>
+      <input type="text" formControlName="publisher">
+      <div *ngIf="bookForm.get('publisher')?.invalid && bookForm.get('publisher')?.touched" class="text-red-500">Publisher not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Language:</label>
+      <input type="text" formControlName="language">
+      <div *ngIf="bookForm.get('language')?.invalid && bookForm.get('language')?.touched" class="text-red-500">Language not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Description:</label>
+      <textarea formControlName="description"></textarea>
+      <div *ngIf="bookForm.get('description')?.invalid && bookForm.get('description')?.touched" class="text-red-500">Description not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Page Count:</label>
+      <input type="number" formControlName="pageCount">
+      <div *ngIf="bookForm.get('pageCount')?.invalid && bookForm.get('pageCount')?.touched" class="text-red-500">Page Count not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Cover Image URL:</label>
+      <input type="text" formControlName="coverImage">
+      <div *ngIf="bookForm.get('coverImage')?.invalid && bookForm.get('coverImage')?.touched" class="text-red-500">Cover image not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Format:</label>
+      <input type="text" formControlName="format">
+      <div *ngIf="bookForm.get('format')?.invalid && bookForm.get('format')?.touched" class="text-red-500">Format not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Availability:</label>
+      <input type="text" formControlName="availability">
+      <div *ngIf="bookForm.get('availability')?.invalid && bookForm.get('availability')?.touched" class="text-red-500">Availability not valid</div>
+    </div>
+
+    <div class="flex flex-col">
+      <label class="text-center text-xl">Category:</label>
+      <div class="flex flex-row">
+        <select type="text" class="w-full py-2" formControlName="category" placeholder="Category name">
+          @for (category of this.categories; track category.id) {
+            <option class="py-1" [value]="category.id">{{category.name}}</option>
+          }
+          <option class="py-1" [value]="null" >No tiene categoria asignada</option>
+        </select>
+      </div>
+      <app-new-category-modal></app-new-category-modal>
+      <button (click)="deleteSelectedCategory()" class="rounded-full border border-slate-900 bg-red-400 w-full" type="button">Delete selected category</button>
+    </div>
+
+    <!--
+    <div class="flex flex-col">
+      <label>Tags:</label>
+      <div formArrayName="tags">
+        @for (tag of this.bookForm.value.tags; track tag.id; let i = $index) {
+          <div class="flex flex-row">
+            <input type="text" formControlName="name" placeholder="Tag Name">
+            <button class="!mb-0" type="button" (click)="removeTag(i)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-6">
+                <path d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"></path>
+              </svg>
+            </button>
+          </div>
+        }
+        <button type="button" class="border border-slate-400 px-2 py-1  bg-gray-100" (click)="addTag()">Add Tag</button>
+      </div>
+    </div>
+    -->
+
+
+    <div class="flex flex-col">
+      <label>Average Rating:</label>
+      <input type="number" formControlName="averageRating" step="0.1" min="0" max="5">
+      <div *ngIf="bookForm.get('averageRating')?.invalid && bookForm.get('averageRating')?.touched" class="text-red-500">Average Rating not valid</div>
+    </div>
+    <div class="flex flex-col">
+      <label>Rating Count:</label>
+      <input type="number" formControlName="ratingCount">
+      <div *ngIf="bookForm.get('ratingCount')?.invalid && bookForm.get('ratingCount')?.touched" class="text-red-500">Rating Count not valid</div>
+    </div>
+
+    @if (this.bookISBNInitial){
+      <button class="btn bg-green-400 w-full" type="submit">Update Book</button>
+    } @else {
+      <button class="btn bg-green-400 w-full" type="submit">Create Book</button>
+    }
+    <button type="button" class="btn bg-gray-100 w-full" [routerLink]="['/books']">Go back</button>
+    <div class="text-red-500 w-full text-center mt-2">{{this.errorMessage}}</div>
+  </form>
+</div>
+

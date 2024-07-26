@@ -5,8 +5,8 @@ import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 import { UserFormComponent } from './user-form.component';
-import { GetService } from '../../services/get/get.service';
-import { UpdateService } from '../../services/update/update.service';
+import { GetService } from '../../services/user/get/get.service';
+import { UpdateService } from '../../services/user/update/update.service';
 import { Component, NgZone } from '@angular/core';
 
 class ActivatedRouteStub {
