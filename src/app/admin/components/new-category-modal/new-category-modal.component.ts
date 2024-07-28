@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CreateService } from '../../services/category/create/create.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../../shared/models/category';
+import { GetService } from '../../services/category/get/get.service';
 
 @Component({
   selector: 'app-new-category-modal',
@@ -11,6 +12,7 @@ import { Category } from '../../../shared/models/category';
   styleUrl: './new-category-modal.component.css'
 })
 export class NewCategoryModalComponent implements OnInit {
+  @Input() categoryId: number = -1;
   opened: boolean = false;
   creating: boolean = false;
   categoryForm: FormGroup = new FormGroup({});
@@ -18,6 +20,7 @@ export class NewCategoryModalComponent implements OnInit {
 
   constructor(
     private createCategoryService: CreateService,
+    private getCategoryService: GetService,
     private router: Router, private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder
   ){}
@@ -47,7 +50,17 @@ export class NewCategoryModalComponent implements OnInit {
   }
 
   openModal() {
-    this.opened = true
+    this.categoryForm.patchValue({name: '', description: ''});
+    this.opened = true;
+  }
+
+  loadModal() {
+    this.getCategoryService.get(this.categoryId).subscribe((category: Category) => {
+      if(category){
+        this.categoryForm.patchValue(category);
+      }
+    });
+    this.opened = true;
   }
 
   closeModal() {

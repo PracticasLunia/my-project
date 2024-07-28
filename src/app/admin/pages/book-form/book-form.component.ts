@@ -45,7 +45,7 @@ export class BookFormComponent {
       coverImage: ['', Validators.required],
       format: ['', Validators.required],
       availability: ['', Validators.required],
-      category: ['', ],
+      category: [null, ],
       //tags: this.formBuilder.array([]),  // Inicializamos el array de tags vacío
       averageRating: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
       ratingCount: ['', [Validators.required, Validators.min(0)]],
@@ -66,21 +66,27 @@ export class BookFormComponent {
   }
 
   deleteSelectedCategory() {
+    if (!this.bookForm.value.category || this.bookForm.value.category === 'null') return;
     const data: Book = this.bookForm.value
-    this.deleteCatergoryService.delete(data.category).subscribe(() => {
+    this.deleteCatergoryService.delete(data.category || 0).subscribe(() => {
       this.getAllCategoriesService.getAll().subscribe((data) => {
         this.categories = data;
       });
     });
   }
 
+  getSelectedCategory(): number {
+    if (!this.bookForm.value.category || this.bookForm.value.category === 'null') return -1;
+    return this.bookForm.value.category || -1;
+  }
+
   onSubmit(){
     if(this.bookForm.valid){
+      if (!this.bookForm.value.category || this.bookForm.value.category === 'null')
+        this.bookForm.patchValue({category: null});
       let book: Book = this.bookForm.value;
       let isbn = this.activatedRoute.snapshot.paramMap.get('isbn');
       if(isbn){
-        console.log(book)
-        if (book.category) // sin categoria se queda como "null" en vez de null
         this.updateService.update(isbn, book).subscribe(() => {
           this.router.navigate(['/books'])
         })
