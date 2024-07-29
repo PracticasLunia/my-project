@@ -15,7 +15,7 @@ export class DeleteService {
     private http: HttpClient,
   ){ }
 
-  delete(id: number): Observable<Tag>{
-    return this.http.delete<Tag>(this.apiUrl + id);
+  delete(id: number): Observable<void>{
+    return this.http.delete<void>(this.apiUrl + id);
   }
 }

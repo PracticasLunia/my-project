@@ -1,6 +1,8 @@
-/*
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { NotVerifiedComponent } from './not-verified.component';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NotVerifiedComponent', () => {
   let component: NotVerifiedComponent;
@@ -8,7 +10,8 @@ describe('NotVerifiedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NotVerifiedComponent]
+      declarations: [NotVerifiedComponent],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
 
@@ -21,4 +24,3 @@ describe('NotVerifiedComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-*/

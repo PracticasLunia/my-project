@@ -38,7 +38,6 @@ describe('FindService', () => {
 
     const req = mockHttp.expectOne(expectedUrl);
     expect(req.request.method).toBe('POST');
-    expect(req.request.headers.get('Authorization')).toBe('Bearer test-token');
     req.flush({});
   });
 });

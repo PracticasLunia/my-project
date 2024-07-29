@@ -15,7 +15,7 @@ export class UpdateService {
     private http: HttpClient,
   ){ }
 
-  update(isbn: string, data: Book | any): Observable<void>{
+  update(isbn: string, data: Book): Observable<void>{
     return this.http.post<void>(this.apiUrl + isbn, data);
   }
 }

@@ -39,7 +39,7 @@ describe('DeleteService', () => {
     service.delete(bookIsbn).subscribe();
 
     const req = mockHttp.expectOne(expectedUrl);
-    expect(req.request.method).toBe('GET');
+    expect(req.request.method).toBe('DELETE');
     req.flush({});
   });
 });

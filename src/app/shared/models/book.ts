@@ -17,6 +17,4 @@ export interface Book {
   Tags: Tag[] | any[],
   averageRating: number,
   ratingCount: number,
-  createdAt: Date,
-  updatedAt: Date
 }

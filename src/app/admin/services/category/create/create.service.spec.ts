@@ -36,12 +36,9 @@ describe('CreateService', () => {
   });
 
   it('should call verify with the correct URL and headers', () => {
-    const categoryIsbn = '123';
     const category: Category | any = {
-      title: 'test',
-      isbm: 'asd'
     }
-    const expectedUrl = `${service['apiUrl']}${categoryIsbn}`;
+    const expectedUrl = `${service['apiUrl']}`;
 
     service.create(category).subscribe();
 

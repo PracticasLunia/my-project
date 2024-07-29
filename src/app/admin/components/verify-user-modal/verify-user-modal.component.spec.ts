@@ -30,7 +30,7 @@ describe('VerifyUserModalComponent', () => {
     fixture = TestBed.createComponent(VerifyUserModalComponent);
     component = fixture.componentInstance;
     verifyService = TestBed.inject(VerifyService);
-    spyOn(component, 'windowReload').and.callFake( () => {});
+    spyOn(component, 'windowReload').and.callFake(() => {});
     fixture.detectChanges();
   });
 

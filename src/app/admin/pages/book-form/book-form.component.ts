@@ -123,7 +123,7 @@ export class BookFormComponent {
 
   getSelectedCategory(): number {
     if (!this.bookForm.value.category || this.bookForm.value.category === 'null') return -1;
-    return this.bookForm.value.category || -1;
+    return this.bookForm.value.category;
   }
 
   onSubmit(){

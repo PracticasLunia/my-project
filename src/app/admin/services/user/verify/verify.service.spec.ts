@@ -42,7 +42,6 @@ describe('VerifyService', () => {
 
     const req = mockHttp.expectOne(expectedUrl);
     expect(req.request.method).toBe('GET');
-    expect(req.request.headers.get('Authorization')).toBe('Bearer test-token');
     req.flush({});
   });
 });

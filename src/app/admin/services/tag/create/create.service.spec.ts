@@ -36,12 +36,9 @@ describe('CreateService', () => {
   });
 
   it('should call verify with the correct URL and headers', () => {
-    const tagIsbn = '123';
     const tag: Tag | any = {
-      title: 'test',
-      isbm: 'asd'
     }
-    const expectedUrl = `${service['apiUrl']}${tagIsbn}`;
+    const expectedUrl = `${service['apiUrl']}`;
 
     service.create(tag).subscribe();
 

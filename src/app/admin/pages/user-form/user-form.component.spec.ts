@@ -9,6 +9,12 @@ import { GetService } from '../../services/user/get/get.service';
 import { UpdateService } from '../../services/user/update/update.service';
 import { Component, NgZone } from '@angular/core';
 
+@Component({
+  selector: 'app-navbar',
+  template: '<div>Navbar</div>'
+})
+class MockNavbarComponent {}
+
 class ActivatedRouteStub {
   snapshot = {
     paramMap: {
@@ -27,7 +33,7 @@ describe('UserFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserFormComponent],
+      declarations: [UserFormComponent, MockNavbarComponent],
       imports: [ReactiveFormsModule, RouterTestingModule.withRoutes(
         [{path: 'users', redirectTo: ''}]
       )],

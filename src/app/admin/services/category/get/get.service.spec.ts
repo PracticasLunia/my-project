@@ -33,10 +33,10 @@ describe('GetService', () => {
   });
 
   it('should call verify with the correct URL and headers', () => {
-    const categoryIsbn = '123';
-    const expectedUrl = `${service['apiUrl']}${categoryIsbn}`;
+    const categoryId = 123;
+    const expectedUrl = `${service['apiUrl']}${categoryId}`;
 
-    service.get(categoryIsbn).subscribe();
+    service.get(categoryId).subscribe();
 
     const req = mockHttp.expectOne(expectedUrl);
     expect(req.request.method).toBe('GET');
