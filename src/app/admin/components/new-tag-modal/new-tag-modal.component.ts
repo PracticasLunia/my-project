@@ -42,7 +42,8 @@ export class NewTagModalComponent implements OnInit {
   createTag(): void {
     if(this.tagForm.valid){
       this.errorMessage = "";
-      const data: Tag = this.tagForm.value
+      const data = this.tagForm.value;
+      delete data['tagSelected'];
       this.creating = true;
       this.createTagService.create(data).subscribe(() => {
         this.creating = false;
@@ -55,9 +56,11 @@ export class NewTagModalComponent implements OnInit {
   updateTag(): void {
     if(this.tagForm.valid){
       this.errorMessage = "";
-      const data: Tag = this.tagForm.value
+      const data = this.tagForm.value
+      const id = data['tagSelected'];
+      delete data['tagSelected'];
       this.creating = true;
-      this.updateTagService.update(this.tagForm.value.tagSelected, data).subscribe(() => {
+      this.updateTagService.update(id, data).subscribe(() => {
         this.creating = false;
         this.windowReload();
       });

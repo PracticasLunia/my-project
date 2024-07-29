@@ -14,11 +14,14 @@ export class AdminGuard implements CanActivate {
 
   canActivate(): boolean {
     try {
-      this.adminService.isAdmin().subscribe(() => {}, (error) => {
+      let value = true;
+      this.adminService.isAdmin().subscribe(() => {
+        value = true;
+      }, (error) => {
         this.router.navigate(['/not-admin']);
-        return false;
+        value = false;
       });
-      return true;
+      return value;
     } catch (err) {
       this.router.navigate(['/not-admin']);
       return false;

@@ -75,4 +75,10 @@ describe('VerifyUserModalComponent', () => {
     const button: HTMLButtonElement = fixture.debugElement.children[1].query((By.css('button'))).nativeElement;
     expect(button.disabled).toBeTruthy();
   });
+
+  /*it('should reload window after creating or updating category', () => {
+    spyOn(window.location, 'reload');
+    component.windowReload();
+    expect(window.location.reload).toHaveBeenCalled();
+  });*/
 });
