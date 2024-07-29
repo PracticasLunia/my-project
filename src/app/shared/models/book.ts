@@ -1,3 +1,5 @@
+import { Tag } from "./tag";
+
 export interface Book {
   title: string,
   author: string,
@@ -12,12 +14,7 @@ export interface Book {
   format: string,
   availability: string,
   category: number | null,
-  tags: [
-    {
-      id: number,
-      name: string
-    }
-  ],
+  Tags: Tag[] | any[],
   averageRating: number,
   ratingCount: number,
   createdAt: Date,

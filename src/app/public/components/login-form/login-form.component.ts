@@ -31,7 +31,7 @@ export class LoginFormComponent implements OnInit {
     if(this.userForm.valid){
       let user: User = this.userForm.value;
       this.loginService.login(user.email, user.password).subscribe((user) => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/users']);
       },
       (error) => {
         this.errorMessage = error.error['error'];

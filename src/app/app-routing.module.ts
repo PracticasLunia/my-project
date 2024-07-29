@@ -6,7 +6,7 @@ import { VerifiedGuard } from './guards/verified.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'users',
+    redirectTo: 'login-register',
     pathMatch: 'full'
   },
   {

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NavbarModule } from '../../../shared/components/navbar/navbar.module';
 import { NewCategoryModalModule } from '../../components/new-category-modal/new-category-modal.module';
+import { NewTagModalModule } from "../../components/new-tag-modal/new-tag-modal.module";
 
 
 
@@ -17,13 +18,14 @@ import { NewCategoryModalModule } from '../../components/new-category-modal/new-
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-      {
-        path: '',
-        component: BookFormComponent
-      }
+        {
+            path: '',
+            component: BookFormComponent
+        }
     ]),
     NavbarModule,
-    NewCategoryModalModule
-  ],
+    NewCategoryModalModule,
+    NewTagModalModule
+],
 })
 export class BookFormModule { }

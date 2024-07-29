@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { VerifyService } from '../../services/user/verify/verify.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateService } from '../../services/category/create/create.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../../shared/models/category';
 import { GetService } from '../../services/category/get/get.service';
+import { UpdateService } from '../../services/category/update/update.service';
 
 @Component({
   selector: 'app-new-category-modal',
@@ -21,6 +21,7 @@ export class NewCategoryModalComponent implements OnInit {
   constructor(
     private createCategoryService: CreateService,
     private getCategoryService: GetService,
+    private updateCategoryService: UpdateService,
     private router: Router, private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder
   ){}
@@ -38,6 +39,19 @@ export class NewCategoryModalComponent implements OnInit {
       const data: Category = this.categoryForm.value
       this.creating = true;
       this.createCategoryService.create(data).subscribe(() => {
+        this.creating = false;
+        this.windowReload();
+      });
+    }else
+      this.errorMessage = "Form invalid";
+  }
+
+  updateCategory(): void {
+    if(this.categoryForm.valid){
+      this.errorMessage = "";
+      const data: Category = this.categoryForm.value
+      this.creating = true;
+      this.updateCategoryService.update(this.categoryId, data).subscribe(() => {
         this.creating = false;
         this.windowReload();
       });

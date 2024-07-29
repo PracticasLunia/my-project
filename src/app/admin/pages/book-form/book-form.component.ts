@@ -7,7 +7,10 @@ import { UpdateService } from '../../services/book/update/update.service';
 import { CreateService } from '../../services/book/create/create.service';
 import { Category } from '../../../shared/models/category';
 import { GetAllService } from '../../services/category/getAll/getAll.service';
+import { GetAllService as GetAllTagService } from '../../services/tag/getAll/getAll.service';
 import { DeleteService } from '../../services/category/delete/delete.service';
+import { DeleteService as DeleteTagService } from '../../services/tag/delete/delete.service';
+import { Tag } from '../../../shared/models/tag';
 
 @Component({
   selector: 'app-book-form',
@@ -17,6 +20,8 @@ import { DeleteService } from '../../services/category/delete/delete.service';
 export class BookFormComponent {
   bookForm: FormGroup = new FormGroup({});
   categories: Category[] = [];
+  tags: Tag[] = [];
+  selectedTags: Tag[] = [];
   bookISBNInitial: string = "";
   errorMessage: string = "";
 
@@ -26,7 +31,9 @@ export class BookFormComponent {
     private updateService: UpdateService,
     private createService: CreateService,
     private getAllCategoriesService: GetAllService,
+    private getAllTagsService: GetAllTagService,
     private deleteCatergoryService: DeleteService,
+    private deleteTagService: DeleteTagService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ){}
@@ -46,7 +53,6 @@ export class BookFormComponent {
       format: ['', Validators.required],
       availability: ['', Validators.required],
       category: [null, ],
-      //tags: this.formBuilder.array([]),  // Inicializamos el array de tags vacío
       averageRating: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
       ratingCount: ['', [Validators.required, Validators.min(0)]],
     });
@@ -55,6 +61,11 @@ export class BookFormComponent {
     if (this.bookISBNInitial){
       this.getService.get(this.bookISBNInitial).subscribe((book: Book) => {
         if(book){
+
+          for (const tag of book.Tags){
+            delete tag['BookTag'];
+          }
+          this.selectedTags = book.Tags;
           this.bookForm.patchValue(book);
         }
       })
@@ -62,6 +73,10 @@ export class BookFormComponent {
 
     this.getAllCategoriesService.getAll().subscribe((data) => {
       this.categories = data;
+    })
+
+    this.getAllTagsService.getAll().subscribe((data) => {
+      this.tags = data;
     })
   }
 
@@ -75,6 +90,37 @@ export class BookFormComponent {
     });
   }
 
+  isTagSelected(tag: Tag){
+    const contains = this.selectedTags.filter((item) => item.id === tag.id)
+    return contains.length > 0;
+  }
+
+  deleteSelectedTags() {
+    if (!this.selectedTags || this.selectedTags.length <= 0) return;
+    for (let tag of this.selectedTags){
+      this.deleteTagService.delete(tag.id || 0).subscribe(() => {
+        this.getAllTagsService.getAll().subscribe((data) => {
+          this.tags = data;
+        });
+      });
+    }
+  }
+
+  onChangeTag(value: Tag) {
+    let includes = false;
+    for(const tag of this.selectedTags){
+      if (tag.id === value.id){
+        includes = true;
+      }
+    }
+
+    if(includes) {
+      this.selectedTags = this.selectedTags.filter((tag) => tag.id !== value.id)
+    }else {
+      this.selectedTags.push(value);
+    }
+  }
+
   getSelectedCategory(): number {
     if (!this.bookForm.value.category || this.bookForm.value.category === 'null') return -1;
     return this.bookForm.value.category || -1;
@@ -85,6 +131,7 @@ export class BookFormComponent {
       if (!this.bookForm.value.category || this.bookForm.value.category === 'null')
         this.bookForm.patchValue({category: null});
       let book: Book = this.bookForm.value;
+      book.Tags = this.selectedTags;
       let isbn = this.activatedRoute.snapshot.paramMap.get('isbn');
       if(isbn){
         this.updateService.update(isbn, book).subscribe(() => {
@@ -98,19 +145,5 @@ export class BookFormComponent {
     } else {
       this.errorMessage = "Form is invalid"
     }
-  }
-
-  addTag(): void {
-    const tags = this.bookForm.get('tags') as FormArray;
-    tags.push(this.formBuilder.group({
-      name: ['', Validators.required]
-    }));
-  }
-
-  removeTag(i: number): void {
-    console.log(i)
-    const tags = this.bookForm.get('tags');
-    console.log(tags)
-    //tags.removeAt(i);
   }
 }

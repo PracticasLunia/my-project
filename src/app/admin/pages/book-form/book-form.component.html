@@ -28,7 +28,7 @@
     </div>
     <div class="flex flex-col">
       <label>Publication Date:</label>
-      <input type="date" formControlName="publicationDate">
+      <input [value]="this.bookForm.value.publicationDate.toString().split('T')[0]" type="date" formControlName="publicationDate">
       <div *ngIf="bookForm.get('publicationDate')?.invalid && bookForm.get('publicationDate')?.touched" class="text-red-500">Publication Date not valid</div>
     </div>
     <div class="flex flex-col">
@@ -67,6 +67,7 @@
       <div *ngIf="bookForm.get('availability')?.invalid && bookForm.get('availability')?.touched" class="text-red-500">Availability not valid</div>
     </div>
 
+
     <div class="flex flex-col">
       <label class="text-center text-xl">Category:</label>
       <div class="flex flex-row">
@@ -74,31 +75,27 @@
           @for (category of this.categories; track category.id) {
             <option class="py-1" [value]="category.id">{{category.name}}</option>
           }
-          <option class="py-1" [value]="null" >No tiene categoria asignada</option>
+          <option class="py-1" [value]="null" >No category selected</option>
         </select>
       </div>
       <app-new-category-modal [categoryId]="getSelectedCategory()"></app-new-category-modal>
       <button (click)="deleteSelectedCategory()" class="rounded-full border border-slate-900 bg-red-400 w-full" type="button">Delete selected category</button>
     </div>
 
-    <!--
-    <div class="flex flex-col">
-      <label>Tags:</label>
-      <div formArrayName="tags">
-        @for (tag of this.bookForm.value.tags; track tag.id; let i = $index) {
-          <div class="flex flex-row">
-            <input type="text" formControlName="name" placeholder="Tag Name">
-            <button class="!mb-0" type="button" (click)="removeTag(i)">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-6">
-                <path d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"></path>
-              </svg>
-            </button>
-          </div>
-        }
-        <button type="button" class="border border-slate-400 px-2 py-1  bg-gray-100" (click)="addTag()">Add Tag</button>
+
+    <div class="flex flex-col mt-4">
+      <label class="text-center text-xl">Tags:</label>
+      <div class="flex justify-center flex-wrap flex-row !mb-2">
+          @for (tag of this.tags; track tag.id) {
+            <div class="px-2 m-2 py-1 border border-slate-300 bg-slate-100 rounded-xl whitespace-nowrap">
+              {{tag.name}}
+              <input (change)="onChangeTag(tag)" [checked]="isTagSelected(tag)" type="checkbox" class="ms-2 py-1" [value]="tag.id">
+            </div>
+          }
       </div>
+      <app-new-tag-modal [tags]="this.tags"></app-new-tag-modal>
+      <button (click)="deleteSelectedTags()" class="rounded-full border border-slate-900 bg-red-400 w-full" type="button">Delete all selected tags</button>
     </div>
-    -->
 
 
     <div class="flex flex-col">

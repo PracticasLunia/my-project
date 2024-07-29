@@ -16,11 +16,13 @@ export class JWTInterceptor implements HttpInterceptor {
   ) { }
 
   addToken(request: HttpRequest<unknown>) {
+    this.token = this.cookieService.get('token');
     let clone = request.clone({ headers: request.headers.append('Authorization', 'Bearer ' + this.token) });
     return clone;
   }
 
   addRefreshToken(request: HttpRequest<unknown>) {
+    this.refreshToken = this.cookieService.get('refreshToken');
     let clone = request.clone({ headers: request.headers.append('Authorization', 'Bearer ' + this.refreshToken) });
     return clone;
   }
