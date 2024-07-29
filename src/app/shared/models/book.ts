@@ -11,7 +11,7 @@ export interface Book {
   coverImage: string,
   format: string,
   availability: string,
-  category: number,
+  category: number | null,
   tags: [
     {
       id: number,

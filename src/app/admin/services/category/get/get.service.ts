@@ -15,7 +15,7 @@ export class GetService {
     private http: HttpClient,
   ){ }
 
-  get(isbn: string): Observable<Category>{
-    return this.http.get<Category>(this.apiUrl + isbn);
+  get(id: number): Observable<Category>{
+    return this.http.get<Category>(this.apiUrl + id);
   }
 }
