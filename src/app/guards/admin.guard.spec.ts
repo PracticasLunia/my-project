@@ -49,4 +49,14 @@ describe('AdminGuard', () => {
     expect(result).toBeFalse();
     expect(router.navigate).toHaveBeenCalledWith(['/not-admin']);
   }));
+
+  it('should navigate to not-admin if an error is thrown', fakeAsync(() => {
+    adminService.isAdmin.and.returnValue(throwError('error'));
+
+    let result = guard.canActivate();
+    tick();
+
+    expect(result).toBeFalse();
+    expect(router.navigate).toHaveBeenCalledWith(['/not-admin']);
+  }));
 });

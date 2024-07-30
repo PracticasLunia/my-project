@@ -14,11 +14,14 @@ export class VerifiedGuard implements CanActivate {
 
   canActivate(): boolean {
     try {
-      this.verifiedService.isVerified().subscribe(() => {}, (error) => {
+      let value = true;
+      this.verifiedService.isVerified().subscribe(() => {
+        value = true;
+      }, (error) => {
         this.router.navigate(['/not-verified']);
-        return false;
+        value = false;
       });
-      return true;
+      return value;
     } catch (err) {
       this.router.navigate(['/not-verified']);
       return false;

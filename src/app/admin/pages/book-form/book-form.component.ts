@@ -59,7 +59,7 @@ export class BookFormComponent {
 
     this.bookISBNInitial = this.activatedRoute.snapshot.paramMap.get('isbn') || '';
     if (this.bookISBNInitial){
-      this.getService.get(this.bookISBNInitial).subscribe((book: Book) => {
+      this.getService.get(this.bookISBNInitial).subscribe((book) => {
         if(book){
 
           for (const tag of book.Tags){
@@ -83,7 +83,7 @@ export class BookFormComponent {
   deleteSelectedCategory() {
     if (!this.bookForm.value.category || this.bookForm.value.category === 'null') return;
     const data: Book = this.bookForm.value
-    this.deleteCatergoryService.delete(data.category || 0).subscribe(() => {
+    this.deleteCatergoryService.delete(data.category).subscribe(() => {
       this.getAllCategoriesService.getAll().subscribe((data) => {
         this.categories = data;
       });
@@ -98,7 +98,7 @@ export class BookFormComponent {
   deleteSelectedTags() {
     if (!this.selectedTags || this.selectedTags.length <= 0) return;
     for (let tag of this.selectedTags){
-      this.deleteTagService.delete(tag.id || 0).subscribe(() => {
+      this.deleteTagService.delete(tag.id).subscribe(() => {
         this.getAllTagsService.getAll().subscribe((data) => {
           this.tags = data;
         });
