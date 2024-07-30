@@ -55,6 +55,7 @@ export class BookFormComponent {
       category: [null, ],
       averageRating: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
       ratingCount: ['', [Validators.required, Validators.min(0)]],
+      summary: ['', Validators.required]
     });
 
     this.bookISBNInitial = this.activatedRoute.snapshot.paramMap.get('isbn') || '';

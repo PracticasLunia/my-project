@@ -17,4 +17,5 @@ export interface Book {
   Tags: Tag[] | any[],
   averageRating: number,
   ratingCount: number,
+  summary: string,
 }

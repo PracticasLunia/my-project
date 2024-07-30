@@ -4,6 +4,7 @@ import { BookListComponent } from './book-list.component';
 import { RouterModule } from '@angular/router';
 import { NavbarModule } from '../../../shared/components/navbar/navbar.module';
 import { FormsModule } from '@angular/forms';
+import { VerifyUserModalModule } from "../../components/import-book-modal/import-book-modal.module";
 
 
 
@@ -14,13 +15,14 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {
-        path: '',
-        component: BookListComponent
-      }
+        {
+            path: '',
+            component: BookListComponent
+        }
     ]),
     NavbarModule,
-    FormsModule
-  ]
+    FormsModule,
+    VerifyUserModalModule
+]
 })
 export class BookListModule { }

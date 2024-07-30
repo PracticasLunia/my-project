@@ -107,6 +107,11 @@
       <input type="number" formControlName="ratingCount">
       <div *ngIf="bookForm.get('ratingCount')?.invalid && bookForm.get('ratingCount')?.touched" class="text-red-500">Rating Count not valid</div>
     </div>
+    <div class="flex flex-col">
+      <label>Summary:</label>
+      <textarea formControlName="summary"></textarea>
+      <div *ngIf="bookForm.get('summary')?.invalid && bookForm.get('summary')?.touched" class="text-red-500">Summary not valid</div>
+    </div>
 
     @if (this.bookISBNInitial){
       <button class="btn bg-green-400 w-full" type="submit">Update Book</button>
