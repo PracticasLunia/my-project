@@ -42,7 +42,6 @@ describe('NewCategoryModalComponent', () => {
     getService = TestBed.inject(GetService) as jasmine.SpyObj<GetService>;
     updateService = TestBed.inject(UpdateService) as jasmine.SpyObj<UpdateService>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-    spyOn(component, 'windowReload').and.callFake(() => {});
     activatedRoute = TestBed.inject(ActivatedRoute) as jasmine.SpyObj<ActivatedRoute>;
     fixture.detectChanges();
   });
@@ -111,10 +110,4 @@ describe('NewCategoryModalComponent', () => {
     component.closeModal();
     expect(component.opened).toBeFalse();
   });
-
-  /*it('should reload window after creating or updating category', () => {
-    spyOn(window.location, 'reload');
-    component.windowReload();
-    expect(window.location.reload).toHaveBeenCalled();
-  });*/
 });

@@ -71,13 +71,8 @@ export class BookFormComponent {
       })
     }
 
-    this.getAllCategoriesService.getAll().subscribe((data) => {
-      this.categories = data;
-    })
-
-    this.getAllTagsService.getAll().subscribe((data) => {
-      this.tags = data;
-    })
+    this.updateCategories();
+    this.updateTags();
   }
 
   deleteSelectedCategory() {
@@ -90,6 +85,18 @@ export class BookFormComponent {
     });
   }
 
+  updateCategories() {
+    this.getAllCategoriesService.getAll().subscribe((data) => {
+      this.categories = data;
+    })
+  }
+
+  updateTags() {
+    this.getAllTagsService.getAll().subscribe((data) => {
+      this.tags = data;
+    })
+  }
+
   isTagSelected(tag: Tag){
     const contains = this.selectedTags.filter((item) => item.id === tag.id)
     return contains.length > 0;
@@ -99,11 +106,12 @@ export class BookFormComponent {
     if (!this.selectedTags || this.selectedTags.length <= 0) return;
     for (let tag of this.selectedTags){
       this.deleteTagService.delete(tag.id).subscribe(() => {
-        this.getAllTagsService.getAll().subscribe((data) => {
-          this.tags = data;
-        });
+
       });
     }
+    this.getAllTagsService.getAll().subscribe((data) => {
+      this.tags = data;
+    });
   }
 
   onChangeTag(value: Tag) {

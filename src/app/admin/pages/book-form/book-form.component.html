@@ -78,8 +78,7 @@
           <option class="py-1" [value]="null" >No category selected</option>
         </select>
       </div>
-      <app-new-category-modal [categoryId]="getSelectedCategory()"></app-new-category-modal>
-      <button (click)="deleteSelectedCategory()" class="rounded-full border border-slate-900 bg-red-400 w-full" type="button">Delete selected category</button>
+      <app-new-category-modal (caterogyEvent)="updateCategories()"></app-new-category-modal>
     </div>
 
 
@@ -93,7 +92,7 @@
             </div>
           }
       </div>
-      <app-new-tag-modal [tags]="this.tags"></app-new-tag-modal>
+      <app-new-tag-modal [tags]="this.tags" (tagEvent)="updateTags()"></app-new-tag-modal>
       <button (click)="deleteSelectedTags()" class="rounded-full border border-slate-900 bg-red-400 w-full" type="button">Delete all selected tags</button>
     </div>
 

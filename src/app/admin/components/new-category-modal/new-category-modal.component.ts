@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateService } from '../../services/category/create/create.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,6 +15,7 @@ export class NewCategoryModalComponent implements OnInit {
   @Input() categoryId: number = -1;
   opened: boolean = false;
   creating: boolean = false;
+  @Output() caterogyEvent = new EventEmitter<boolean>();
   categoryForm: FormGroup = new FormGroup({});
   errorMessage: string = "";
 
@@ -40,7 +41,8 @@ export class NewCategoryModalComponent implements OnInit {
       this.creating = true;
       this.createCategoryService.create(data).subscribe(() => {
         this.creating = false;
-        this.windowReload();
+        this.caterogyEvent.emit(true);
+        this.closeModal()
       });
     }else
       this.errorMessage = "Form invalid";
@@ -53,14 +55,11 @@ export class NewCategoryModalComponent implements OnInit {
       this.creating = true;
       this.updateCategoryService.update(this.categoryId, data).subscribe(() => {
         this.creating = false;
-        this.windowReload();
+        this.caterogyEvent.emit(true);
+        this.closeModal()
       });
     }else
       this.errorMessage = "Form invalid";
-  }
-
-  windowReload(){
-    window.location.reload();
   }
 
   openModal() {

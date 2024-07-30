@@ -34,6 +34,11 @@ const routes: Routes = [
     loadChildren: () => import('./admin/pages/user-list/user-list.module').then(m => m.UserListModule)
   },
 
+  {
+    path: 'categories',
+    canActivate: [VerifiedGuard, AdminGuard],
+    loadChildren: () => import('./admin/pages/category-list/category-list.module').then(m => m.CategoryListModule)
+  },
 
   {
     path: 'books',

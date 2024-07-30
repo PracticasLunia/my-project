@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Tag } from '../../../shared/models/tag';
@@ -15,6 +15,7 @@ export class NewTagModalComponent implements OnInit {
   editing: boolean = false;
   opened: boolean = false;
   creating: boolean = false;
+  @Output() tagEvent = new EventEmitter<boolean>();
   tagForm: FormGroup = new FormGroup({});
   errorMessage: string = "";
 
@@ -47,7 +48,7 @@ export class NewTagModalComponent implements OnInit {
       this.creating = true;
       this.createTagService.create(data).subscribe(() => {
         this.creating = false;
-        this.windowReload();
+        this.tagEvent.emit(true);
       });
     }else
       this.errorMessage = "Form invalid";
@@ -62,14 +63,11 @@ export class NewTagModalComponent implements OnInit {
       this.creating = true;
       this.updateTagService.update(id, data).subscribe(() => {
         this.creating = false;
-        this.windowReload();
+        this.tagEvent.emit(true);
+        this.closeModal()
       });
     }else
       this.errorMessage = "Form invalid";
-  }
-
-  windowReload(){
-    window.location.reload();
   }
 
   openModal() {

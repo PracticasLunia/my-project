@@ -37,7 +37,6 @@ describe('NewTagModalComponent', () => {
     createService = TestBed.inject(CreateService) as jasmine.SpyObj<CreateService>;
     updateService = TestBed.inject(UpdateService) as jasmine.SpyObj<UpdateService>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-    spyOn(component, 'windowReload').and.callFake(() => {});
     activatedRoute = TestBed.inject(ActivatedRoute) as jasmine.SpyObj<ActivatedRoute>;
     fixture.detectChanges();
   });
@@ -108,10 +107,4 @@ describe('NewTagModalComponent', () => {
     component.closeModal();
     expect(component.opened).toBeFalse();
   });
-  
-  /*it('should reload window after creating or updating tag', () => {
-    spyOn(window.location, 'reload');
-    component.windowReload();
-    expect(window.location.reload).toHaveBeenCalled();
-  });*/
 });
