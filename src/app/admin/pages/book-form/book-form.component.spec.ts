@@ -207,7 +207,7 @@ describe('BookFormComponent', () => {
       coverImage: 'http://example.com/cover.jpg',
       format: 'Format',
       availability: 'Available',
-      category: null,
+      category: 0,
       Tags: [{
         id: 1,
         BookTag: {

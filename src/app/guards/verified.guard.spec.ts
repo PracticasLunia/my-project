@@ -49,4 +49,14 @@ describe('VerifiedGuard', () => {
     expect(result).toBeFalse();
     expect(router.navigate).toHaveBeenCalledWith(['/not-verified']);
   }));
+
+  it('should navigate to not-verified if an error is thrown', fakeAsync(() => {
+    verifiedService.isVerified.and.returnValue(throwError('error'));
+
+    let result = guard.canActivate();
+    tick();
+
+    expect(result).toBeFalse();
+    expect(router.navigate).toHaveBeenCalledWith(['/not-verified']);
+  }));
 });
