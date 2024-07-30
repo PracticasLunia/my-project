@@ -29,7 +29,7 @@
           </div>
           <div class="sm:ml-auto flex sm:flex-row flex-col justify-center items-center">
             @if (!user.verified) {
-              <app-verify-user-modal [userName]="user.name" [userId]="user.id"></app-verify-user-modal>
+              <app-verify-user-modal [userName]="user.name" [userId]="user.id" (verifiedEvent)="searchUsers()" ></app-verify-user-modal>
             }
             @if (user.verified) {
               <div class="text-green-700 sm:me-4 sm:mb-0 mb-2">Verified</div>

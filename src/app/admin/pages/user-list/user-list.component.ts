@@ -18,9 +18,7 @@ export class UserListComponent implements OnInit {
   ){ }
 
   ngOnInit(): void {
-    this.findService.find('', '').subscribe((data) => {
-      this.userList = data;
-    })
+    this.searchUsers();
   }
 
   searchUsers(): void {

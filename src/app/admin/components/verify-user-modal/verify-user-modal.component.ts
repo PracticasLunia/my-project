@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { VerifyService } from '../../services/user/verify/verify.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class VerifyUserModalComponent {
   @Input() userName: string = '';
   @Input() userId: number = -1;
+  @Output() verifiedEvent = new EventEmitter<boolean>();
   opened: boolean = false;
   verifing: boolean = false;
 
@@ -22,12 +23,8 @@ export class VerifyUserModalComponent {
     this.verifing = true;
     this.verifyService.verify(this.userId).subscribe(() => {
       this.verifing = false;
-      this.windowReload();
+      this.verifiedEvent.emit(true);
     });
-  }
-
-  windowReload(){
-    window.location.reload();
   }
 
   openModal() {
