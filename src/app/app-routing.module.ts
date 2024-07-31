@@ -6,8 +6,8 @@ import { VerifiedGuard } from './guards/verified.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login-register',
-    pathMatch: 'full'
+    canActivate: [VerifiedGuard],
+    loadChildren: () => import('./shared/pages/find-your-book/find-your-book.module').then(m => m.FindYourBookModule)
   },
   {
     path: 'login-register',
