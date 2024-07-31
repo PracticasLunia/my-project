@@ -1,3 +1,4 @@
+import { CoverService } from './../../services/book/cover/cover.service';
 import { Component, OnInit } from '@angular/core';
 import { FindService } from '../../services/book/find/find.service';
 import { Book } from '../../../shared/models/book';
@@ -15,7 +16,7 @@ export class BookListComponent implements OnInit {
 
   constructor(
     private findService: FindService,
-    private deleteService: DeleteService
+    private deleteService: DeleteService,
   ){ }
 
   ngOnInit(): void {
@@ -35,4 +36,6 @@ export class BookListComponent implements OnInit {
       this.searchBooks();
     })
   }
+
+
 }

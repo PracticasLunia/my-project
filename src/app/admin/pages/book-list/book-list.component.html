@@ -16,35 +16,42 @@
     <table class="table-auto justify-center w-full">
       <thead>
         <tr class="bg-slate-50">
-          <th>ISBN</th>
-          <th>Title</th>
-          <th>Author</th>
+          <th class="text-left">ISBN</th>
+          <th class="text-center">Cover</th>
+          <th class="text-left">Title</th>
+          <th class="text-left">Author</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
       @for (book of this.bookList; track book.isbn; let i = $index) {
-        <tr [ngClass]="{'bg-slate-50': i % 2 == 1}">
-            <td class="me-4">
-              {{book.isbn}}
-            </td>
-            <td class="me-4">
-              {{book.title}}
-            </td>
-            <td class="me-4">
-              {{book.author}}
-            </td>
-          <td class="sm:ml-auto flex sm:flex-row flex-col justify-center items-center">
-            <a class="mx-1" [routerLink]="['/book/edit/'+book.isbn]">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-              </svg>
-            </a>
-            <a class="mx-1 cursor-pointer" (click)="deleteBook(book.isbn)">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-6">
-                <path d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"></path>
-              </svg>
-            </a>
+        <tr [ngClass]="{'bg-slate-50': i % 2 == 1}" class="table-row ">
+          <td class="me-4 text-left">
+            {{book.isbn}}
+          </td>
+          <td class="text-center flex items-center justify-center">
+            <img class="w-auto h-28" [src]="book.coverImage" />
+          </td>
+          <td class="me-4 text-left">
+            {{book.title}}
+          </td>
+          <td class="me-4 text-left">
+            {{book.author}}
+          </td>
+          <td class="sm:ml-auto">
+            <div class="flex flex-row mb-2 justify-center">
+              <a class="mx-1" [routerLink]="['/book/edit/'+book.isbn]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                </svg>
+              </a>
+              <a class="mx-1 cursor-pointer" (click)="deleteBook(book.isbn)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-6">
+                  <path d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"></path>
+                </svg>
+              </a>
+            </div>
+            <app-generate-cover [bookIsbn]="book.isbn" (bookCoverEvent)="this.searchBooks()" ></app-generate-cover>
           </td>
         </tr>
       }

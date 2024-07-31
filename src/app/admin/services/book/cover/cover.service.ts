@@ -8,14 +8,14 @@ import { Book } from '../../../../shared/models/book';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateService {
-  private apiUrl = environment.apiUrl + '/admin/book-create/';
+export class CoverService {
+  private apiUrl = environment.apiUrl + '/admin/book-cover/';
 
   constructor(
     private http: HttpClient,
   ){ }
 
-  create(data: FormData): Observable<void>{
-    return this.http.post<void>(this.apiUrl, data);
+  cover(isbn: string): Observable<Book>{
+    return this.http.get<Book>(this.apiUrl + isbn);
   }
 }

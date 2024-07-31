@@ -25,34 +25,34 @@ const routes: Routes = [
 
   {
     path: 'user/edit/:id',
-    canActivate: [VerifiedGuard, AdminGuard],
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/pages/user-form/user-form.module').then(m => m.UserFormModule)
   },
   {
     path: 'users',
-    canActivate: [VerifiedGuard, AdminGuard],
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/pages/user-list/user-list.module').then(m => m.UserListModule)
   },
 
   {
     path: 'categories',
-    canActivate: [VerifiedGuard, AdminGuard],
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/pages/category-list/category-list.module').then(m => m.CategoryListModule)
   },
 
   {
     path: 'books',
-    canActivate: [VerifiedGuard, AdminGuard],
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/pages/book-list/book-list.module').then(m => m.BookListModule)
   },
   {
     path: 'book/create',
-    canActivate: [VerifiedGuard, AdminGuard],
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/pages/book-form/book-form.module').then(m => m.BookFormModule)
   },
   {
     path: 'book/edit/:isbn',
-    canActivate: [VerifiedGuard, AdminGuard],
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/pages/book-form/book-form.module').then(m => m.BookFormModule)
   },
   /*{

@@ -12,9 +12,9 @@
     <table class="table-auto justify-center w-full">
       <thead>
         <tr class="bg-slate-50">
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
+          <th class="text-right">ID</th>
+          <th class="text-left">Name</th>
+          <th class="text-left">Email</th>
           <th>Is admin?</th>
           <th>Is verified?</th>
           <th></th>
@@ -23,16 +23,16 @@
       <tbody>
       @for (user of this.userList; track user.id; let i = $index) {
         <tr [ngClass]="{'bg-slate-50': i % 2 == 1}">
-          <td class="me-4">
+          <td class="me-4 text-right">
             {{user.id}}
           </td>
-          <td class="me-4">
+          <td class="me-4 text-left">
             {{user.name}}
           </td>
-          <td class="me-4">
+          <td class="me-4 text-left">
             {{user.email}}
           </td>
-          <td class="me-4">
+          <td class="me-4 text-center">
             <input class="ms-2 mt-[0.125rem]" disabled type="checkbox" [checked]="user.admin">
           </td>
           <td class="sm:ml-auto flex sm:flex-row flex-col justify-center items-center">

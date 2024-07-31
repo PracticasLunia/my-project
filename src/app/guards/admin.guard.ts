@@ -6,7 +6,6 @@ import { AdminService } from '../admin/services/user/admin/admin.service';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-
   constructor(
     private router: Router,
     private adminService: AdminService

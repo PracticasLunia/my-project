@@ -112,11 +112,15 @@
       <textarea formControlName="summary"></textarea>
       <div *ngIf="bookForm.get('summary')?.invalid && bookForm.get('summary')?.touched" class="text-red-500">Summary not valid</div>
     </div>
+    <div class="flex flex-col mt-4">
+      <input (change)="enableImport($event)" type="file" name="file" class="p-2 w-full" accept="application/pdf">
+      <div *ngIf="bookForm.get('file')?.invalid && bookForm.get('file')?.touched" class="text-red-500">File not valid</div>
+    </div>
 
     @if (this.bookISBNInitial){
       <button class="btn bg-green-400 w-full" type="submit">Update Book</button>
     } @else {
-      <button class="btn bg-green-400 w-full" type="submit">Create Book</button>
+      <button class="btn bg-green-400 w-full" [disabled]="!this.fileLoaded" type="submit">Create Book</button>
     }
     <button type="button" class="btn bg-gray-100 w-full" [routerLink]="['/books']">Go back</button>
     <div class="text-red-500 w-full text-center mt-2">{{this.errorMessage}}</div>

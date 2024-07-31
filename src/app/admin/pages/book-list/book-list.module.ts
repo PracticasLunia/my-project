@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarModule } from '../../../shared/components/navbar/navbar.module';
 import { FormsModule } from '@angular/forms';
 import { VerifyUserModalModule } from "../../components/import-book-modal/import-book-modal.module";
+import { GenerateCoverModule } from "../../components/generate-cover/generate-cover.module";
 
 
 
@@ -22,7 +23,8 @@ import { VerifyUserModalModule } from "../../components/import-book-modal/import
     ]),
     NavbarModule,
     FormsModule,
-    VerifyUserModalModule
+    VerifyUserModalModule,
+    GenerateCoverModule
 ]
 })
 export class BookListModule { }

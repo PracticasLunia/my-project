@@ -24,6 +24,8 @@ export class BookFormComponent {
   selectedTags: Tag[] = [];
   bookISBNInitial: string = "";
   errorMessage: string = "";
+  file: File | null = null;
+  fileLoaded: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,7 +57,7 @@ export class BookFormComponent {
       category: [null, ],
       averageRating: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
       ratingCount: ['', [Validators.required, Validators.min(0)]],
-      summary: ['', Validators.required]
+      summary: ['', Validators.required],
     });
 
     this.bookISBNInitial = this.activatedRoute.snapshot.paramMap.get('isbn') || '';
@@ -135,19 +137,35 @@ export class BookFormComponent {
     return this.bookForm.value.category;
   }
 
+  enableImport(event: Event) {
+    if (event.target){
+      let files = (event.target as HTMLInputElement).files || [];
+      if (files.length > 0){
+        this.file = files[0];
+        this.fileLoaded = true;
+      }
+    }
+  }
+
   onSubmit(){
     if(this.bookForm.valid){
       if (!this.bookForm.value.category || this.bookForm.value.category === 'null')
         this.bookForm.patchValue({category: null});
-      let book: Book = this.bookForm.value;
+      let book = this.bookForm.value;
       book.Tags = this.selectedTags;
+      const formData = new FormData();
+      if (this.file){
+        formData.append("file", this.file);
+      }
+      formData.append("book", JSON.stringify(book));
+      console.log(formData)
       let isbn = this.activatedRoute.snapshot.paramMap.get('isbn');
       if(isbn){
         this.updateService.update(isbn, book).subscribe(() => {
           this.router.navigate(['/books'])
         })
       }else {
-        this.createService.create(book).subscribe(() => {
+        this.createService.create(formData).subscribe(() => {
           this.router.navigate(['/books'])
         })
       }

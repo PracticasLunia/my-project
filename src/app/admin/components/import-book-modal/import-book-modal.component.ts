@@ -24,7 +24,6 @@ export class ImportBookModalComponent {
     if (this.file){
       const formData = new FormData();
       formData.append("file", this.file);
-      console.log(formData);
       this.importService.import(formData).subscribe((response) => {
         this.importedEvent.emit(true);
         this.importing = false;

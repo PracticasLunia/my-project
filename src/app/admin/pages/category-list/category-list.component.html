@@ -8,22 +8,22 @@
     <table class="table-auto justify-center w-full">
       <thead>
         <tr class="bg-slate-50">
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
+          <th class="text-right">ID</th>
+          <th class="text-left">Name</th>
+          <th class="text-left">Description</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
       @for (category of this.categoryList; track category.id; let i = $index) {
         <tr [ngClass]="{'bg-slate-50': i % 2 == 1}">
-          <td class="me-4">
+          <td class="me-4 text-right">
             {{category.id}}
           </td>
-          <td class="me-4">
+          <td class="me-4 text-left">
             {{category.name}}
           </td>
-          <td class="me-4">
+          <td class="me-4 text-left">
             {{category.description}}
           </td>
           <td class="sm:ml-auto flex sm:flex-row flex-col justify-center items-center">
@@ -36,12 +36,13 @@
           </td>
         </tr>
       }
-      @if (this.categoryList.length <= 0) {
-        <div class="flex flex-row sm:w-full justify-center border border-gray-200 rounded-xl my-1 bg-gray-50 py-2 px-4 items-center">
-          There are no categorys
-        </div>
-      }
+
       </tbody>
     </table>
+    @if (this.categoryList.length <= 0) {
+      <div class="flex flex-row sm:w-full justify-center border border-gray-200 rounded-xl my-1 bg-gray-50 py-2 px-4 items-center">
+        There are no categorys
+      </div>
+    }
   </div>
 </div>
