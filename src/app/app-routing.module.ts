@@ -10,8 +10,12 @@ const routes: Routes = [
     loadChildren: () => import('./shared/pages/find-your-book/find-your-book.module').then(m => m.FindYourBookModule)
   },
   {
-    path: 'login-register',
-    loadChildren: () => import('./public/pages/user-login-register/user-login-register.module').then(m => m.UserLoginRegisterModule)
+    path: 'login',
+    loadChildren: () => import('./public/pages/login-form/login-form.module').then(m => m.LoginFormModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./public/pages/register-form/register-form.module').then(m => m.RegisterFormModule)
   },
   {
     path: 'not-verified',

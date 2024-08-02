@@ -1,17 +1,23 @@
-<div class="flex flex-col items-center px-5 sm:my-0 my-8">
+<div class="flex h-[100vh] justify-center items-center flex-col sm:my-0">
   <h1 class="mb-3">Login</h1>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="flex flex-col">
       <label>User Email:</label>
-      <input type="email" formControlName="email">
+      <input autocomplete="email" type="email" formControlName="email">
       <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-500">Email required</div>
     </div>
     <div class="flex flex-col">
       <label>User Password:</label>
-      <input type="password" formControlName="password">
+      <input autocomplete="current-password" type="password" formControlName="password">
       <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password required</div>
     </div>
     <button class="btn bg-green-400 w-full" type="submit">Log In</button>
     <div class="text-red-500 w-full text-center mt-2">{{this.errorMessage || " "}}</div>
+    <a [routerLink]="['/register']" class="text-md me-6">
+      You don't have an account?
+      <span class="text-blue-800">
+        Go register
+      </span>
+    </a>
   </form>
 </div>

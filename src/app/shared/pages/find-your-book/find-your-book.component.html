@@ -1,1 +1,27 @@
-<p>find-your-book works!</p>
+<app-navbar></app-navbar>
+<main class="flex flex-col justify-center items-center mx-20 my-16">
+  <h1 class="w-full text-center mb-4">What do you want to know about?</h1>
+  <form #data = "ngForm" class="contents" (ngSubmit)="onSubmit(data.value)">
+    <input class="w-[400px]" type="text" name="description" placeholder="Animals..." ngModel>
+    <button [disabled]="this.searching" class="w-[200px] px-3 py-2 border font-bold border-slate-300 rounded-lg bg-slate-100 disabled:opacity-40 mt-2" type="submit" value="submit">{{this.searchButtonText}}</button>
+  </form>
+  @if (this.books.length > 0){
+    <div class="mt-8">
+      <h2 class="w-full text-center">Books finded:</h2>
+      <div class="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-1 gap-8 mt-4 container">
+        @for (book of this.books; track book.isbn){
+          <div class="flex flex-col border p-2 border-slate-200 drop-shadow-lg bg-slate-100 rounded-lg">
+            <img class="rounded-lg" [src]="book.coverImage">
+            <div class="flex flex-col w-full justify-start mt-2">
+              <div class="font-bold">{{book.title}}</div>
+              <div class="font-medium">{{book.author}}</div>
+              <div class="">{{book.publicationDate.toString().split('T')[0]}}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <h2 class="w-full text-center mt-8">No books finded</h2>
+  }
+</main>

@@ -64,7 +64,7 @@ export class BookFormComponent {
     if (this.bookISBNInitial){
       this.getService.get(this.bookISBNInitial).subscribe((book) => {
         if(book){
-
+          this.fileLoaded = true;
           for (const tag of book.Tags){
             delete tag['BookTag'];
           }
@@ -149,6 +149,7 @@ export class BookFormComponent {
 
   onSubmit(){
     if(this.bookForm.valid){
+      this.errorMessage = ""
       if (!this.bookForm.value.category || this.bookForm.value.category === 'null')
         this.bookForm.patchValue({category: null});
       let book = this.bookForm.value;
@@ -158,10 +159,9 @@ export class BookFormComponent {
         formData.append("file", this.file);
       }
       formData.append("book", JSON.stringify(book));
-      console.log(formData)
       let isbn = this.activatedRoute.snapshot.paramMap.get('isbn');
       if(isbn){
-        this.updateService.update(isbn, book).subscribe(() => {
+        this.updateService.update(isbn, formData).subscribe(() => {
           this.router.navigate(['/books'])
         })
       }else {
@@ -170,6 +170,7 @@ export class BookFormComponent {
         })
       }
     } else {
+      console.log(this.bookForm)
       this.errorMessage = "Form is invalid"
     }
   }
