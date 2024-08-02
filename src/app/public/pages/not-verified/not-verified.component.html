@@ -1,5 +1,8 @@
 <div class="min-h-[100vh] flex flex-col justify-center items-center">
   <h1 class="mb-4">Your user is not verified</h1>
-  <h2 class="mb-4">Please, try again later</h2>
-  <a [routerLink]="['/login']" class="border rounded-md text-xl px-3 py-2 bg-slate-100">Go back to login</a>
+  <h2 class="mb-8">Please, check your email</h2>
+  <div class="">
+    <a [routerLink]="['/']" class="border rounded-md text-xl px-3 py-2 mx-2 bg-slate-100">Im already verified</a>
+    <a [routerLink]="['/login']" class="border rounded-md text-xl px-3 py-2 mx-2 bg-slate-100">Go back to login</a>
+  </div>
 </div>

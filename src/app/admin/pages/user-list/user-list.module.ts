@@ -5,6 +5,7 @@ import { VerifyUserModalModule } from '../../components/verify-user-modal/verify
 import {RouterModule} from "@angular/router";
 import { NavbarModule } from '../../../shared/components/navbar/navbar.module';
 import { FormsModule } from '@angular/forms';
+import { AdminNavbarModule } from '../../components/admin-navbar/admin-navbar.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
       }
     ]),
     NavbarModule,
-    FormsModule
+    FormsModule,
+    AdminNavbarModule
   ]
 })
 export class UserListModule { }

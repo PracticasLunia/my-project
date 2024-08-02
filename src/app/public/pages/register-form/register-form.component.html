@@ -16,7 +16,13 @@
       <input autocomplete="current-password" type="password" formControlName="password">
       <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password required</div>
     </div>
-    <button class="btn bg-green-400 w-full" type="submit">Sing in</button>
+    <div class="flex flex-col">
+      <label>User Description:</label>
+      <label class="text-sm">Important to generate user preferences</label>
+      <textarea formControlName="description"></textarea>
+      <div *ngIf="userForm.get('description')?.invalid && userForm.get('description')?.touched" class="text-red-500">Description required</div>
+    </div>
+    <button [disabled]="this.registering" class="btn bg-green-400 w-full" type="submit">{{this.buttonText}}</button>
     <div class="text-red-500 w-full text-center mt-2">{{this.errorMessage}}</div>
     <a [routerLink]="['/login']" class="text-md me-6">
       Already have an account?

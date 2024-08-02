@@ -11,13 +11,21 @@
       <input autocomplete="current-password" type="password" formControlName="password">
       <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password required</div>
     </div>
-    <button class="btn bg-green-400 w-full" type="submit">Log In</button>
+    <button class="btn bg-green-400 w-full" [disabled]="this.logging" type="submit">{{this.buttonText}}</button>
     <div class="text-red-500 w-full text-center mt-2">{{this.errorMessage || " "}}</div>
-    <a [routerLink]="['/register']" class="text-md me-6">
-      You don't have an account?
-      <span class="text-blue-800">
-        Go register
-      </span>
-    </a>
+    <div class="flex flex-col justify-center items-center">
+      <a [routerLink]="['/register']" class="text-md me-6">
+        You don't have an account?
+        <span class="text-blue-800">
+          Go register
+        </span>
+      </a>
+      <a [routerLink]="['/']" class="text-md me-6">
+        Forgot your password?
+        <span class="text-blue-800">
+          Change it
+        </span>
+      </a>
+    </div>
   </form>
 </div>

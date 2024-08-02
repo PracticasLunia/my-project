@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarModule } from '../../../shared/components/navbar/navbar.module';
 import { FormsModule } from '@angular/forms';
 import { NewCategoryModalModule } from "../../components/new-category-modal/new-category-modal.module";
+import { AdminNavbarModule } from '../../components/admin-navbar/admin-navbar.module';
 
 
 
@@ -22,7 +23,8 @@ import { NewCategoryModalModule } from "../../components/new-category-modal/new-
     ]),
     NavbarModule,
     FormsModule,
-    NewCategoryModalModule
+    NewCategoryModalModule,
+    AdminNavbarModule
 ]
 })
 export class CategoryListModule { }

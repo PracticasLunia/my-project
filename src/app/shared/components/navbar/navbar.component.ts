@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AdminService } from '../../../admin/services/user/admin/admin.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements OnInit {
-  admin: boolean = false;
-
+export class NavbarComponent {
   constructor(
-    private adminService: AdminService,
-    private activatedRoute: ActivatedRoute
+    private cookieService: CookieService,
+    private router: Router
   ){}
 
-  ngOnInit(): void {
-    this.adminService.isAdmin().subscribe(() => {
-      this.admin = true;
-    })
+  logout(){
+    this.cookieService.delete('token');
+    this.cookieService.delete('refreshToken');
+    this.router.navigate(['/login']);
   }
 }

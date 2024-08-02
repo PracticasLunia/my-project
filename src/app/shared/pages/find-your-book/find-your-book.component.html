@@ -4,6 +4,8 @@
   <form #data = "ngForm" class="contents" (ngSubmit)="onSubmit(data.value)">
     <input class="w-[400px]" type="text" name="description" placeholder="Animals..." ngModel>
     <button [disabled]="this.searching" class="w-[200px] px-3 py-2 border font-bold border-slate-300 rounded-lg bg-slate-100 disabled:opacity-40 mt-2" type="submit" value="submit">{{this.searchButtonText}}</button>
+    <div class="mt-2">OR</div>
+    <button (click)="searchUserPreferences()" [disabled]="this.searching2" class="w-[260px] px-3 py-2 border font-bold border-slate-300 rounded-lg bg-slate-100 disabled:opacity-40 mt-2" type="button" value="button">{{this.searchButtonText2}}</button>
   </form>
   @if (this.books.length > 0){
     <div class="mt-8">

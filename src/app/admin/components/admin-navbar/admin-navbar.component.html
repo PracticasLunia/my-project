@@ -5,8 +5,14 @@
     </a>
   </div>
   <div class="flex flex-row items-center">
-    <button (click)="logout()" class="border border-red-600 rounded-md px-2 py-1 bg-red-400 text-white">
-      Logout
-    </button>
+    <a [routerLink]="['/users']" class="text-xl me-6">
+      Users
+    </a>
+    <a [routerLink]="['/books']" class="text-xl me-6">
+      Books
+    </a>
+    <a [routerLink]="['/categories']" class="text-xl me-6">
+      Categories
+    </a>
   </div>
 </nav>

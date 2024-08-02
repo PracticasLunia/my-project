@@ -12,7 +12,9 @@ import { User } from '../../../shared/models/user';
 })
 export class LoginFormComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
-  errorMessage: string = " ";
+  errorMessage: string = "";
+  logging: boolean = false;
+  buttonText: string = "Log In";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,16 +30,28 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit(){
+    this.logging = true;
+    this.buttonText = "Logging..."
     if(this.userForm.valid){
       let user: User = this.userForm.value;
       this.loginService.login(user.email, user.password).subscribe((user) => {
-        this.router.navigate(['/']);
+        console.log(user);
+        if (user.admin){
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/']);
+        }
+        this.logging = false;
       },
       (error) => {
         this.errorMessage = error.error['error'];
+        this.logging = false;
+        this.buttonText = "Log in";
       });
     } else {
       this.errorMessage = "Form is invalid"
+      this.logging = false;
+      this.buttonText = "Log in";
     }
   }
 }

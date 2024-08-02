@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin.guard';
 import { VerifiedGuard } from './guards/verified.guard';
+import { AdminAreaModule } from './admin/pages/admin-area/admin-area.module';
 
 const routes: Routes = [
   {
@@ -9,6 +10,8 @@ const routes: Routes = [
     canActivate: [VerifiedGuard],
     loadChildren: () => import('./shared/pages/find-your-book/find-your-book.module').then(m => m.FindYourBookModule)
   },
+
+
   {
     path: 'login',
     loadChildren: () => import('./public/pages/login-form/login-form.module').then(m => m.LoginFormModule)
@@ -25,8 +28,17 @@ const routes: Routes = [
     path: 'not-admin',
     loadChildren: () => import('./public/pages/not-admin/not-admin.module').then(m => m.NotAdminModule)
   },
+  {
+    path: 'mail-verify/:token',
+    loadChildren: () => import('./public/pages/mail-verify/mail-verify.module').then(m => m.MailVerifyModule)
+  },
 
 
+  {
+    path: 'admin',
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./admin/pages/admin-area/admin-area.module').then(m => m.AdminAreaModule)
+  },
   {
     path: 'user/edit/:id',
     canActivate: [AdminGuard],

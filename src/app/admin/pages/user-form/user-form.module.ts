@@ -4,6 +4,7 @@ import { UserFormComponent } from './user-form.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarModule } from '../../../shared/components/navbar/navbar.module';
+import { AdminNavbarModule } from '../../components/admin-navbar/admin-navbar.module';
 
 
 
@@ -21,7 +22,8 @@ import { NavbarModule } from '../../../shared/components/navbar/navbar.module';
         component: UserFormComponent
       }
     ]),
-    NavbarModule
+    NavbarModule,
+    AdminNavbarModule
   ],
 })
 export class UserFormModule { }
