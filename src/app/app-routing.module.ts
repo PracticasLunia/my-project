@@ -2,13 +2,17 @@ import {NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin.guard';
 import { VerifiedGuard } from './guards/verified.guard';
-import { AdminAreaModule } from './admin/pages/admin-area/admin-area.module';
 
 const routes: Routes = [
   {
     path: '',
     canActivate: [VerifiedGuard],
-    loadChildren: () => import('./shared/pages/find-your-book/find-your-book.module').then(m => m.FindYourBookModule)
+    loadChildren: () => import('./shared/pages/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'book/:isbn',
+    canActivate: [VerifiedGuard],
+    loadChildren: () => import('./shared/pages/book/book.module').then(m => m.BookModule)
   },
 
 

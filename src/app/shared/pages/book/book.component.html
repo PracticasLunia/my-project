@@ -1,0 +1,35 @@
+<main class="flex flex-col justify-center items-center m-8">
+  <div class="w-full flex ">
+    <div class="md:w-1/3 p-4">
+      <img class="border-slate-200 border rounded-xl" [src]="this.book?.coverImage" alt="Book cover">
+    </div>
+    <div class="w-1/2 flex flex-col items-start p-4">
+      <h1 class="w-full text-left font-bold">{{this.book?.title}}</h1>
+      <h3 class="font-medium">Author: {{this.book?.author}}</h3>
+      <p class="">{{this.book?.averageRating}} ★ - <span class="text-sm">({{this.book?.ratingCount}} opinions)</span></p>
+      <div class="mt-4">
+        <h3 class="font-medium">Description</h3>
+        <p>{{this.book?.description}}</p>
+      </div>
+      <div class="mt-4">
+        <h3 class="font-medium">Category</h3>
+        <p>{{this.category?.name}}: {{this.category?.description}}</p>
+      </div>
+      <div class="mt-4">
+        <h3 class="font-medium">Book info</h3>
+        <p>ISBN: {{this.book?.isbn}}</p>
+        <p>Published on {{this.date}}, by {{this.book?.publisher}}</p>
+        <p>Language: {{this.book?.language}}</p>
+        <p>{{this.book?.pageCount}} pages</p>
+      </div>
+      <div class="mt-4">
+        <h3 class="font-medium">Summary</h3>
+        <p>{{this.book?.summary}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <button class="border mx-2 border-slate-200 py-2 px-3 min-w-48 bg-slate-50 rounded-lg" [routerLink]="['/']"> Go Back</button>
+    <button class="border font-semibold mx-2 border-yellow-300 py-2 px-3 min-w-48 bg-yellow-200 rounded-lg" [routerLink]="['/']"> Read Book</button>
+  </div>
+</main>

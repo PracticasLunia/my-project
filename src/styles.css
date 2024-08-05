@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&family=Frank+Ruhl+Libre:wght@300..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  font-family: "Frank Ruhl Libre", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 
 h1 {
   font-size: 2rem;
@@ -18,7 +26,9 @@ input, textarea, select {
   background-color: rgb(240, 240, 240);
   border: 1px solid;
   border-radius: 5px;
-  padding-left: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 td, th {

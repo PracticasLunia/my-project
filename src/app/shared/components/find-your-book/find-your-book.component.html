@@ -1,0 +1,50 @@
+<main class="flex flex-col justify-center items-center mx-20 mb-20">
+  <div class="flex flex-row p-4 w-full justify-end items-center">
+    <button (click)="logout()" class="border border-red-600 rounded-md px-2 py-1 bg-red-400 text-white">
+      Logout
+    </button>
+  </div>
+  <h1 class="w-full text-center mb-4 font-bold">What do you want to know about?</h1>
+  <form #data = "ngForm" class="contents" (ngSubmit)="onSubmit(data.value)">
+    <input class="w-[400px]" type="text" name="description" placeholder="Animals..." ngModel>
+    <button [disabled]="this.searching" class="w-[200px] px-3 py-2 border font-bold border-slate-300 rounded-lg bg-slate-100 disabled:opacity-40 mt-2" type="submit" value="submit">{{this.searchButtonText}}</button>
+  </form>
+  @if (this.books.length > 0){
+    <div class="mt-8">
+      <h2 class="w-full text-center">Books finded:</h2>
+      <div class="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-1 gap-8 mt-4 container">
+        @for (book of this.books; track book.isbn){
+          <a class="flex flex-col border p-2 border-slate-200 drop-shadow-lg bg-slate-100 rounded-lg">
+            <img class="rounded-lg" [src]="book.coverImage">
+            <div class="flex flex-col w-full justify-start mt-2">
+              <div class="font-bold">{{book.title}}</div>
+              <div class="font-medium">{{book.author}}</div>
+              <div class="">{{book.publicationDate.toString().split('T')[0]}}</div>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  } @else {
+    <h2 class="w-full text-center mt-8">No books finded</h2>
+  }
+  <h1 class="w-full text-center mt-8 font-bold">Books based on user description</h1>
+  @if (this.bookPreferences.length > 0){
+    <div class="mt-4">
+      <div class="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-1 gap-8 mt-4 container">
+        @for (book of this.bookPreferences; track book.isbn){
+          <a [routerLink]="['/book/'+book.isbn]" class="flex flex-col border p-2 border-slate-200 drop-shadow-lg bg-slate-100 rounded-lg">
+            <img class="rounded-lg" [src]="book.coverImage">
+            <div class="flex flex-col w-full justify-start mt-2">
+              <div class="font-bold">{{book.title}}</div>
+              <div class="font-medium">{{book.author}}</div>
+              <div class="">{{book.publicationDate.toString().split('T')[0]}}</div>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  } @else {
+    <h2 class="w-full text-center mt-4">No books finded</h2>
+  }
+</main>

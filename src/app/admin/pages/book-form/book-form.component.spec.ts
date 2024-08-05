@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { GetService } from '../../services/book/get/get.service';
+import { GetService } from '../../../shared/services/book/get/get.service';
 import { UpdateService } from '../../services/book/update/update.service';
 import { CreateService } from '../../services/book/create/create.service';
 import { GetAllService } from '../../services/category/getAll/getAll.service';

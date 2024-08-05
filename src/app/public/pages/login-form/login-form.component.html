@@ -1,31 +1,34 @@
 <div class="flex h-[100vh] justify-center items-center flex-col sm:my-0">
-  <h1 class="mb-3">Login</h1>
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <div class="flex flex-col">
-      <label>User Email:</label>
-      <input autocomplete="email" type="email" formControlName="email">
-      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-500">Email required</div>
-    </div>
-    <div class="flex flex-col">
-      <label>User Password:</label>
-      <input autocomplete="current-password" type="password" formControlName="password">
-      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password required</div>
-    </div>
-    <button class="btn bg-green-400 w-full" [disabled]="this.logging" type="submit">{{this.buttonText}}</button>
-    <div class="text-red-500 w-full text-center mt-2">{{this.errorMessage || " "}}</div>
-    <div class="flex flex-col justify-center items-center">
-      <a [routerLink]="['/register']" class="text-md me-6">
-        You don't have an account?
-        <span class="text-blue-800">
-          Go register
-        </span>
-      </a>
-      <a [routerLink]="['/']" class="text-md me-6">
-        Forgot your password?
-        <span class="text-blue-800">
-          Change it
-        </span>
-      </a>
-    </div>
-  </form>
+  <div class="p-8 flex flex-col border border-slate-200 rounded-lg items-center shadow-lg">
+    <h1 class="mb-1 uppercase font-bold">Login</h1>
+    <h3 class="mb-3 font-semibold">Start looking for books</h3>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="flex flex-col">
+        <label class="font-medium">User Email:</label>
+        <input autocomplete="email" type="email" formControlName="email">
+        <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-500">Email required</div>
+      </div>
+      <div class="flex flex-col">
+        <label class="font-medium">User Password:</label>
+        <input autocomplete="current-password" type="password" formControlName="password">
+        <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">Password required</div>
+      </div>
+      <button class="btn rounded-md bg-blue-700 w-full font-bold text-white" [disabled]="this.logging" type="submit">{{this.buttonText}}</button>
+      <div class="text-red-500 w-full text-center mt-2">{{this.errorMessage || " "}}</div>
+      <div class="flex flex-col justify-center items-center">
+        <a class="text-md me-6">
+          You don't have an account?
+          <span [routerLink]="['/register']" class="text-blue-800 font-bold cursor-pointer">
+            Go register
+          </span>
+        </a>
+        <a class="text-md me-6">
+          Forgot your password?
+          <span [routerLink]="['/']" class="text-blue-800 font-bold cursor-pointer">
+            Change it
+          </span>
+        </a>
+      </div>
+    </form>
+  </div>
 </div>

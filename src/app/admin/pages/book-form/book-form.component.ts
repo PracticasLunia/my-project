@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../../../shared/models/book';
-import { GetService } from '../../services/book/get/get.service';
+import { GetService } from '../../../shared/services/book/get/get.service';
 import { UpdateService } from '../../services/book/update/update.service';
 import { CreateService } from '../../services/book/create/create.service';
 import { Category } from '../../../shared/models/category';

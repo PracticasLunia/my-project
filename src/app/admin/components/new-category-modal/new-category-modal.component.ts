@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CreateService } from '../../services/category/create/create.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../../shared/models/category';
-import { GetService } from '../../services/category/get/get.service';
+import { GetService } from '../../../shared/services/category/get/get.service';
 import { UpdateService } from '../../services/category/update/update.service';
 
 @Component({

@@ -11,7 +11,7 @@ describe('FindYourBookComponent', () => {
       declarations: [FindYourBookComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(FindYourBookComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
