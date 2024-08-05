@@ -4,7 +4,7 @@ import { of, throwError } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewCategoryModalComponent } from './new-category-modal.component';
 import { CreateService } from '../../services/category/create/create.service';
-import { GetService } from '../../services/category/get/get.service';
+import { GetService } from '../../../shared/services/category/get/get.service';
 import { UpdateService } from '../../services/category/update/update.service';
 import { Category } from '../../../shared/models/category';
 

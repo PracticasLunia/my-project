@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class FindYourBookComponent implements OnInit {
   books: Book[] = [];
   bookPreferences: Book[] = [];
+  preferencesText: string = "Finding..."
   searchButtonText: string = "Search";
   searching: boolean = false;
 
@@ -27,7 +28,9 @@ export class FindYourBookComponent implements OnInit {
   ngOnInit(){
     this.searchUserPreferencesService.searchUserPreferences().subscribe((books) => {
       this.bookPreferences = books;
+      this.preferencesText = "No books finded"
     }, (error) => {
+      this.preferencesText = "No books finded"
     })
   }
 
