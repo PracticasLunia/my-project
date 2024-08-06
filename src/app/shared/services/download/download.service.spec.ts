@@ -1,12 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { DownloadService } from './download.service';
 import { CookieService } from 'ngx-cookie-service';
-// Http testing module and mocking controller
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-// Other imports
-
-describe('VerifiedService', () => {
+describe('DownloadService', () => {
   let service: DownloadService;
   let mockHttp: HttpTestingController;
   let mockCookieService: CookieService;
@@ -21,7 +18,7 @@ describe('VerifiedService', () => {
         HttpClientTestingModule,
       ],
       providers: [
-        {provide: CookieService, useValue: cookieServiceStub},
+        { provide: CookieService, useValue: cookieServiceStub },
         DownloadService
       ]
     });
@@ -34,13 +31,16 @@ describe('VerifiedService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call verified with the correct URL and headers', () => {
-    const expectedUrl = `${service['apiUrl']}+isbn-test`;
+  it('should call download with the correct URL and headers', () => {
+    const expectedUrl = `${service['apiUrl']}isbn-test`;
 
-    service.download('isbn-test').subscribe();
+    service.download('isbn-test').subscribe(response => {
+      expect(response.body instanceof Blob).toBe(true);
+    });
 
     const req = mockHttp.expectOne(expectedUrl);
     expect(req.request.method).toBe('GET');
-    req.flush({});
+    req.flush(new Blob(['test content'], { type: 'application/pdf' }));
   });
+
 });

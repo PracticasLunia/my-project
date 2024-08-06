@@ -22,7 +22,7 @@ export class MailVerifyComponent implements OnInit {
       this.mailVerifyService.verify(token).subscribe(() => {
         this.router.navigate(['/']);
       }, (error) => {
-        this.errorMessage = "Something happened during your verificaiton, please, try again later";
+        this.errorMessage = "Something happened during your verification, please, try again later";
       })
     }
   }

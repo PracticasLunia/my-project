@@ -10,7 +10,7 @@ import { UpdateService } from '../../services/user/update/update.service';
 import { Component, NgZone } from '@angular/core';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-admin-navbar',
   template: '<div>Navbar</div>'
 })
 class MockNavbarComponent {}

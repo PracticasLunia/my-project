@@ -10,18 +10,24 @@ import { DeleteService } from '../../services/book/delete/delete.service';
 
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-admin-navbar',
   template: '<div>Navbar</div>'
 })
 class MockNavbarComponent {}
 
 @Component({
-  selector: 'app-verify-book-modal',
-  template: '<div>Verify Book Modal</div>'
+  selector: 'app-import-book-modal',
+  template: '<div>Import Book Modal</div>'
 })
-class MockVerifyBookModalComponent {
-  @Input() bookName: string = "";
-  @Input() bookId: number = -1;
+class MockImportBookModalComponent {
+}
+
+@Component({
+  selector: 'app-generate-cover',
+  template: '<div>Generate Cover Modal</div>'
+})
+class MockGenerateCoverComponent {
+  @Input() bookIsbn: string = "";
 }
 
 describe('BookListComponent', () => {
@@ -36,7 +42,7 @@ describe('BookListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BookListComponent, MockNavbarComponent, MockVerifyBookModalComponent],
+      declarations: [BookListComponent, MockNavbarComponent, MockImportBookModalComponent, MockGenerateCoverComponent],
       imports: [HttpClientTestingModule, RouterTestingModule, FormsModule],
       providers:[
         { provide: FindService, useValue: {find: jasmine.createSpy('find').and.returnValue(of(testBooks))}},

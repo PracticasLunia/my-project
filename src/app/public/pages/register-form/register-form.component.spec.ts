@@ -44,7 +44,7 @@ describe('RegisterFormComponent', () => {
 
   it('should navigate to home when form is valid and submission is successful', () => {
     spyOn(router, 'navigate');
-    const user: User | any = { name: 'John Doe', email: 'john@example.com', password: 'password123' };
+    const user: User | any = { name: 'John Doe', email: 'john@example.com', password: 'password123', description: 'test' };
     (registerService.register as jasmine.Spy).and.returnValue(of(user));
 
     component.userForm.setValue(user);
@@ -61,7 +61,8 @@ describe('RegisterFormComponent', () => {
     component.userForm.setValue({
       name: 'John Doe',
       email: 'john@example.com',
-      password: 'password123'
+      password: 'password123',
+      description: 'as',
     });
     component.onSubmit();
 
@@ -72,7 +73,8 @@ describe('RegisterFormComponent', () => {
     component.userForm.setValue({
       name: '',
       email: '',
-      password: ''
+      password: '',
+      description: '',
     });
     component.onSubmit();
 

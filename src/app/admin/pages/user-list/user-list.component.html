@@ -9,7 +9,9 @@
         <button (click)="this.searchUsers()" class="px-2 mb-2 md:mb-0 py-1 border rounded-md w-full md:w-28 bg-slate-100">Search</button>
       </div>
     </div>
-    <table class="table-auto justify-center w-full">
+    <div class="block overflow-x-auto whitespace-nowrap w-full">
+
+    <table class="table-auto mx-auto">
       <thead>
         <tr class="bg-slate-50">
           <th class="text-right">ID</th>
@@ -59,5 +61,8 @@
         </div>
       }
     </table>
+
+    </div>
+
   </div>
 </div>

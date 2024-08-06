@@ -1,10 +1,10 @@
 @if (this.book){
-<main class="flex flex-col justify-center items-center m-8">
-  <div class="w-full flex ">
-    <div class="xl:w-1/3 p-4">
-      <img class="border-slate-200 border rounded-xl" [src]="this.book.coverImage" alt="Book cover">
+<main class="flex flex-col justify-center items-center sm:mt-10 mt-4">
+  <div class="w-full flex lg:flex-row items-center flex-col">
+    <div class="lg:ps-16 px-8 p-4 flex flex-col justify-start">
+      <img class="border-slate-200 border rounded-xl w-full  max-w-[500px]" [src]="this.book.coverImage" alt="Book cover">
     </div>
-    <div class="w-1/2 flex flex-col items-start p-4">
+    <div class="lg:w-1/2 flex flex-col items-start lg:p-4 sm:px-16 px-8">
       <h1 class="w-full text-left font-bold">{{this.book.title}}</h1>
       <h3 class="font-medium">Author: {{this.book.author}}</h3>
       <p class="">{{this.book.averageRating}} ★ - <span class="text-sm">({{this.book.ratingCount}} opinions)</span></p>
@@ -29,10 +29,10 @@
         <h3 class="font-medium">Summary</h3>
         <p>{{this.book.summary}}</p>
       </div>
-      <div class="mt-4 flex">
-        <button class="border font-semibold me-2 border-slate-200 py-2 px-3 min-w-48 bg-slate-50 rounded-lg" [routerLink]="['/']">Go Back</button>
+      <div class="lg:mt-4 mt-6 flex lg:flex-row items-center w-full flex-col-reverse">
+        <button class="mb-2 border font-semibold lg:ms-0 ms-2 me-2 border-slate-200 py-2 px-3 min-w-48 bg-slate-50 rounded-lg" [routerLink]="['/']">Go Back</button>
         <app-book-reader [bookTitle]="this.book.title" [fileUrl]="this.fileUrl"></app-book-reader>
-        <button (click)="downloadBook()" class="border font-semibold mx-2 border-blue-300 py-2 px-3 min-w-48 bg-blue-200 rounded-lg">Download Book</button>
+        <button (click)="downloadBook()" class="mb-2 border font-semibold mx-2 border-blue-300 py-2 px-3 min-w-48 bg-blue-200 rounded-lg">Download Book</button>
       </div>
     </div>
   </div>

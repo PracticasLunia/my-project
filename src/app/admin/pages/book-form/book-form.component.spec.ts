@@ -18,7 +18,7 @@ import { Category } from '../../../shared/models/category';
 import { Book } from '../../../shared/models/book';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-admin-navbar',
   template: '<div>Navbar</div>'
 })
 class MockNavbarComponent {}
@@ -133,6 +133,7 @@ describe('BookFormComponent', () => {
       }],
       averageRating: 4.5,
       ratingCount: 10,
+      summary: 'test',
     };
     getService.get.and.returnValue(of(book));
     (activatedRoute.snapshot.paramMap.get as jasmine.Spy).and.returnValue('123456');
@@ -182,6 +183,7 @@ describe('BookFormComponent', () => {
       category: 'null',
       averageRating: 4.5,
       ratingCount: 10,
+      summary: 'test',
     });
 
     createService.create.and.returnValue(of(void 1));
@@ -214,6 +216,7 @@ describe('BookFormComponent', () => {
           id: 23,
         }
       }],
+      summary: '',
       averageRating: 4.5,
       ratingCount: 10,
     };
@@ -239,7 +242,10 @@ describe('BookFormComponent', () => {
       category: null,
       averageRating: 4.5,
       ratingCount: 10,
+      summary: 'test',
     });
+    let event = new SubmitEvent("")
+    component.enableImport(event)
 
     updateService.update.and.returnValue(of(void 1));
     component.onSubmit();
@@ -283,6 +289,7 @@ describe('BookFormComponent', () => {
       category: 'null',
       averageRating: 4.5,
       ratingCount: 10,
+      summary: 'test',
     });
 
     let cat = component.getSelectedCategory();
@@ -297,6 +304,7 @@ describe('BookFormComponent', () => {
       category: 1,
       averageRating: 4.5,
       ratingCount: 10,
+      summary: 'test',
     });
     fixture.detectChanges();
     component.onSubmit();
@@ -334,6 +342,7 @@ describe('BookFormComponent', () => {
       category: 1,
       averageRating: 4.5,
       ratingCount: 10,
+      summary: 'test',
     });
 
     component.deleteSelectedCategory();

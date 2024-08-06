@@ -35,7 +35,6 @@ export class LoginFormComponent implements OnInit {
     if(this.userForm.valid){
       let user: User = this.userForm.value;
       this.loginService.login(user.email, user.password).subscribe((user) => {
-        console.log(user);
         if (user.admin){
           this.router.navigate(['/admin']);
         } else {

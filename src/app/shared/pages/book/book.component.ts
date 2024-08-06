@@ -43,7 +43,7 @@ export class BookComponent implements OnInit {
 
   downloadBook() {
     const isbn = this.activatedRoute.snapshot.paramMap.get('isbn') || '';
-    if (isbn.length > 0){
+    if (isbn){
       this.downloadService.download(isbn).subscribe((res) => {
         const data = res.body as Blob;
         if (this.book){
@@ -53,5 +53,5 @@ export class BookComponent implements OnInit {
     }
   }
 
-  
+
 }

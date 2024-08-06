@@ -53,6 +53,18 @@ describe('LoginFormComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
+  it('should navigate to admin area when form is valid and login is successful', () => {
+    spyOn(router, 'navigate');
+    const user: User | any = { email: 'john@example.com', password: 'password123', admin: true };
+    (loginService.login as jasmine.Spy).and.returnValue(of(user));
+
+    component.userForm.setValue({ email: 'john@example.com', password: 'password123' });
+    component.onSubmit();
+
+    expect(loginService.login).toHaveBeenCalledWith(user.email, user.password);
+    expect(router.navigate).toHaveBeenCalledWith(['/admin']);
+  });
+
   it('should display error message when form is valid but login fails', () => {
     const errorResponse = { error: { error: 'Login failed' } };
     (loginService.login as jasmine.Spy).and.returnValue(throwError(() => errorResponse));

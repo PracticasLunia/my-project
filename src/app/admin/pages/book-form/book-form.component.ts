@@ -170,7 +170,6 @@ export class BookFormComponent {
         })
       }
     } else {
-      console.log(this.bookForm)
       this.errorMessage = "Form is invalid"
     }
   }

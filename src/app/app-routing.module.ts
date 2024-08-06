@@ -9,11 +9,6 @@ const routes: Routes = [
     canActivate: [VerifiedGuard],
     loadChildren: () => import('./shared/pages/home/home.module').then(m => m.HomeModule)
   },
-  {
-    path: 'book/:isbn',
-    canActivate: [VerifiedGuard],
-    loadChildren: () => import('./shared/pages/book/book.module').then(m => m.BookModule)
-  },
 
 
   {
@@ -23,6 +18,14 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./public/pages/register-form/register-form.module').then(m => m.RegisterFormModule)
+  },
+  {
+    path: 'recover-password',
+    loadChildren: () => import('./public/pages/recover-password-form/recover-password-form.module').then(m => m.RecoverPasswordFormModule)
+  },
+  {
+    path: 'update-password/:token',
+    loadChildren: () => import('./public/pages/update-password-form/update-password-form.module').then(m => m.UpdatePasswordFormModule)
   },
   {
     path: 'not-verified',
@@ -75,11 +78,16 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     loadChildren: () => import('./admin/pages/book-form/book-form.module').then(m => m.BookFormModule)
   },
-  /*{
+  {
+    path: 'book/:isbn',
+    canActivate: [VerifiedGuard],
+    loadChildren: () => import('./shared/pages/book/book.module').then(m => m.BookModule)
+  },
+  {
     path: "**",
-    redirectTo: "not-admin",
+    redirectTo: "login",
     pathMatch: "full",
-  },*/
+  },
 ];
 
 @NgModule({

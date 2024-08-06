@@ -10,7 +10,7 @@ import { DeleteService } from '../../services/category/delete/delete.service';
 
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-admin-navbar',
   template: '<div>Navbar</div>'
 })
 class MockNavbarComponent {}

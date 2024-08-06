@@ -5,7 +5,8 @@
     <div class="w-full flex md:flex-row flex-col justify-around items-center mb-4 px-4">
       <app-new-category-modal (caterogyEvent)="getCategories()"></app-new-category-modal>
     </div>
-    <table class="table-auto justify-center w-full">
+    <div class="block overflow-x-auto whitespace-nowrap w-full">
+      <table class="table-auto mx-auto">
       <thead>
         <tr class="bg-slate-50">
           <th class="text-right">ID</th>
@@ -44,5 +45,6 @@
         There are no categorys
       </div>
     }
+    </div>
   </div>
 </div>

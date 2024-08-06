@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-admin-navbar',
   template: '<div>Navbar</div>'
 })
 class MockNavbarComponent {}

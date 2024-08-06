@@ -1,16 +1,16 @@
+import { ImportService } from './../../services/book/import/import.service';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ImportBookModalComponent } from './import-book-modal.component';
-import { VerifyService } from '../../services/user/verify/verify.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-describe('VerifyUserModalComponent', () => {
+describe('ImportBookModalComponent', () => {
   let component: ImportBookModalComponent;
   let fixture: ComponentFixture<ImportBookModalComponent>;
-  let verifyService: VerifyService;
+  let service: ImportService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,9 +18,9 @@ describe('VerifyUserModalComponent', () => {
       imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [
         {
-          provide: VerifyService,
+          provide: ImportService,
           useValue: {
-            verify: jasmine.createSpy('verify').and.returnValue(of(void 0))
+            import: jasmine.createSpy('import').and.returnValue(of({data: ''}))
           }
         }
       ]
@@ -29,7 +29,7 @@ describe('VerifyUserModalComponent', () => {
 
     fixture = TestBed.createComponent(ImportBookModalComponent);
     component = fixture.componentInstance;
-    verifyService = TestBed.inject(VerifyService);
+    service = TestBed.inject(ImportService);
     fixture.detectChanges();
   });
 
@@ -49,11 +49,6 @@ describe('VerifyUserModalComponent', () => {
     expect(modal).toBeFalsy();
   });
 
-  it('should call verifyUser and verify service', () => {
-    component.userId = 1;
-    component.verifyUser();
-    expect(verifyService.verify).toHaveBeenCalledWith(1);
-  });
 
   it('should call openModal and set opened to true', () => {
     component.openModal();
@@ -66,18 +61,31 @@ describe('VerifyUserModalComponent', () => {
     expect(component.opened).toBeFalse();
   });
 
-  it('should disable verify button when verifing', () => {
+  it('should disable import button when importing', () => {
     component.openModal();
     fixture.detectChanges();
-    component.verifing = true;
+    component.importing = true;
     fixture.detectChanges();
     const button: HTMLButtonElement = fixture.debugElement.children[1].query((By.css('button'))).nativeElement;
     expect(button.disabled).toBeTruthy();
   });
 
-  /*it('should reload window after creating or updating category', () => {
-    spyOn(window.location, 'reload');
-    component.windowReload();
-    expect(window.location.reload).toHaveBeenCalled();
-  });*/
+  it('should import the book and call the service', () => {
+    component.enableImport(new SubmitEvent("test"));
+    component.file = new File(['asd'], 'test', {});
+    fixture.detectChanges();
+    component.importBook();
+    expect(service.import).toHaveBeenCalled();
+  })
+
+  it('should import the book and fail the service', () => {
+    const errorResponse = { error: { error: 'Import failed' } };
+    (service.import as jasmine.Spy).and.returnValue(throwError(() => errorResponse));
+
+    component.enableImport(new SubmitEvent("test"));
+    component.file = new File(['asd'], 'test', {});
+    fixture.detectChanges();
+    component.importBook();
+    expect(service.import).toHaveBeenCalled();
+  })
 });
