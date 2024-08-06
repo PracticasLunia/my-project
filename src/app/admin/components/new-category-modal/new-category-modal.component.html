@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse justify-center sm:px-6">
+        <div class="bg-gray-50 px-4 py-3 flex sm:flex-row-reverse flex-col justify-center sm:px-6">
           @if (!(this.categoryId < 0)){
             <button (click)="updateCategory()" [disabled]="this.creating" type="button" class="inline-flex w-full disabled:disabled justify-center rounded-md bg-yellow-500 transition-all px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-700 disabled:bg-yellow-700 disabled:opacity-75 sm:ml-3 sm:w-auto">Modify</button>
           } @else {
