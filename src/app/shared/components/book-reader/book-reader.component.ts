@@ -10,7 +10,7 @@ import { DownloadService } from '../../services/download/download.service';
 export class BookReaderComponent {
   @Input() fileUrl: string = 'null';
   open: boolean = false;
-  @Input() bookTitle: string = ''
+  @Input() bookTitle: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,

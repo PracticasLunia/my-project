@@ -185,8 +185,10 @@ describe('BookFormComponent', () => {
       ratingCount: 10,
       summary: 'test',
     });
-
+    const mockEvt: any = { target: { files: [new File(['asd'], 'test', {})] } };
+    component.enableImport(mockEvt)
     createService.create.and.returnValue(of(void 1));
+
     component.onSubmit();
 
     expect(createService.create).toHaveBeenCalled();
@@ -244,8 +246,8 @@ describe('BookFormComponent', () => {
       ratingCount: 10,
       summary: 'test',
     });
-    let event = new SubmitEvent("")
-    component.enableImport(event)
+    const mockEvt: any = { target: { files: null } };
+    component.enableImport(mockEvt)
 
     updateService.update.and.returnValue(of(void 1));
     component.onSubmit();

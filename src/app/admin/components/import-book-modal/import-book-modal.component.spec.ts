@@ -71,8 +71,8 @@ describe('ImportBookModalComponent', () => {
   });
 
   it('should import the book and call the service', () => {
-    component.enableImport(new SubmitEvent("test"));
-    component.file = new File(['asd'], 'test', {});
+    const mockEvt: any = { target: { files: [new File(['asd'], 'test', {})] } };
+    component.enableImport(mockEvt)
     fixture.detectChanges();
     component.importBook();
     expect(service.import).toHaveBeenCalled();
@@ -82,8 +82,10 @@ describe('ImportBookModalComponent', () => {
     const errorResponse = { error: { error: 'Import failed' } };
     (service.import as jasmine.Spy).and.returnValue(throwError(() => errorResponse));
 
-    component.enableImport(new SubmitEvent("test"));
+    const mockEvt: any = { target: { files: null } };
     component.file = new File(['asd'], 'test', {});
+    component.enableImport(mockEvt)
+    component.enableImport(mockEvt)
     fixture.detectChanges();
     component.importBook();
     expect(service.import).toHaveBeenCalled();
