@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'http://localhost/api'
+  apiUrl: 'https://my-project-backend-gefwdkg4bqaxajhf.spaincentral-01.azurewebsites.net/api'
 };
