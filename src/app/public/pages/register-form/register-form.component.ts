@@ -35,7 +35,9 @@ export class RegisterFormComponent implements OnInit {
     this.registering = true;
     if(this.userForm.valid){
       let user: User = this.userForm.value;
-      this.registerService.register(user).subscribe((user) => {
+      this.registerService.register(user).subscribe((tokens) => {
+        localStorage.setItem('token', tokens.token);
+        localStorage.setItem('refreshToken', tokens.refreshToken);
         this.router.navigate(['/']);
         this.registering = false;
         this.buttonText = "Sing in"

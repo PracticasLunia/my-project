@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient){}
 
-  login(email: string, password: string): Observable<User>{
-    return this.http.post<User>(this.apiUrl, {email: email, password: password}, {withCredentials: true});
+  login(email: string, password: string): Observable<{token: string, refreshToken: string}>{
+    return this.http.post<{token: string, refreshToken: string}>(this.apiUrl, {email: email, password: password}, {withCredentials: true});
   }
 }

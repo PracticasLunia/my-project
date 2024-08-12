@@ -34,12 +34,10 @@ export class LoginFormComponent implements OnInit {
     this.buttonText = "Logging..."
     if(this.userForm.valid){
       let user: User = this.userForm.value;
-      this.loginService.login(user.email, user.password).subscribe((user) => {
-        if (user.admin){
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/']);
-        }
+      this.loginService.login(user.email, user.password).subscribe((tokens) => {
+        localStorage.setItem('token', tokens.token);
+        localStorage.setItem('refreshToken', tokens.refreshToken);
+        this.router.navigate(['/']);
         this.logging = false;
       },
       (error) => {

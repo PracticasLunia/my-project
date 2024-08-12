@@ -35,19 +35,8 @@ EXPOSE 4200
 CMD ["ng", "serve", "--host", "0.0.0.0", "--configuration", "development"]
 
 FROM dev as test
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN apt-get update -qq && \
-    apt-get install -qy wget gnupg && \
-    dpkg -i google-chrome-stable_current_amd64.deb || apt-get install -f -y && \
-    rm google-chrome-stable_current_amd64.deb
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN apt-get update -qq && apt-get install -qy \
-    google-chrome-stable \
-    --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
 ENV NODE_ENV=test
 COPY . .
-CMD ["npm", "run", "test-headless"]
 
 FROM test as pre-prod
 RUN rm -rf ./tests

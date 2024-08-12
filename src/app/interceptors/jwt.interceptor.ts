@@ -16,13 +16,13 @@ export class JWTInterceptor implements HttpInterceptor {
   ) { }
 
   addToken(request: HttpRequest<unknown>) {
-    this.token = this.cookieService.get('token');
+    this.token = localStorage.getItem('token') || '';
     let clone = request.clone({ headers: request.headers.append('Authorization', 'Bearer ' + this.token) });
     return clone;
   }
 
   addRefreshToken(request: HttpRequest<unknown>) {
-    this.refreshToken = this.cookieService.get('refreshToken');
+    this.refreshToken = localStorage.getItem('refreshToken') || '';
     let clone = request.clone({ headers: request.headers.append('Authorization', 'Bearer ' + this.refreshToken) });
     return clone;
   }
@@ -55,6 +55,8 @@ export class JWTInterceptor implements HttpInterceptor {
       this.isRefreshing = true;
       return this.refreshjwtService.refresh().pipe(
         switchMap((data) => {
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('refreshToken', data.refreshToken)
           this.token = data.token;
           this.refreshToken = data.refreshToken;
           this.isRefreshing = false;
