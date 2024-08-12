@@ -62,7 +62,7 @@ describe('LoginFormComponent', () => {
     component.onSubmit();
 
     expect(loginService.login).toHaveBeenCalledWith(user.email, user.password);
-    expect(router.navigate).toHaveBeenCalledWith(['/admin']);
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
   it('should display error message when form is valid but login fails', () => {
